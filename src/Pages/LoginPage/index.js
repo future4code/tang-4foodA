@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { goToHomePage, goToSignUpPage } from "../../Routes/coordinators";
 import InitialScreen from "../../Components/InitialScreen";
+import Button from '@material-ui/core/Button';
 
 export default function LoginPage() {
   const history = useHistory();
@@ -21,7 +22,7 @@ export default function LoginPage() {
       {exibirLogin && (
         <div>
           login
-          <button onClick={() => goToSignUpPage(history)}>CADASTRO</button>
+          <Button  variant="contained" color="primary" onClick={() => goToSignUpPage(history)}>CADASTRO</Button>
           <button onClick={() => goToHomePage(history)}>HomePage</button>
         </div>
       )}
