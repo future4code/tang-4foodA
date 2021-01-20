@@ -4,6 +4,7 @@ import HomePage from "../Pages/HomePage";
 import AddAddressPage from "../Pages/AddAddressPage";
 import CartPage from "../Pages/CartPage";
 import EditProfilePage from "../Pages/EditProfilePage";
+import EditAdressPage from "../Pages/EditAdressPage"
 import LoginPage from "../Pages/LoginPage";
 import ProfilePage from "../Pages/ProfilePage";
 import RestaurantPage from "../Pages/RestaurantPage";
@@ -29,6 +30,10 @@ export default function Routes() {
 
                 <Route exact path="/profile/edit">
                     <EditProfilePage/>
+                </Route>
+
+                <Route exact path="/profile/edit/address">
+                    <EditAdressPage/>
                 </Route>
 
                 <Route exact path="/">
