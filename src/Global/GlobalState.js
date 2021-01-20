@@ -11,14 +11,15 @@ export default function GlobalState(props) {
     const [restaurante, setRestaurante] = useState({})
     const [listaRestaurantes, setListaRestaurantes] = useState([])
     const [token, setToken] = useState("")
+    const [headerButton, setHeaderButton] = useState(true) /* Renderiza botão de voltar no header */
 
 
-    const states = {carrinho, perfil, restaurante, listaRestaurantes, token}
-    const setters = {setCarrinho, setPerfil, setRestaurante, setListaRestaurantes, setToken}
+    const states = {carrinho, perfil, restaurante, listaRestaurantes, token, headerButton}
+    const setters = {setCarrinho, setPerfil, setRestaurante, setListaRestaurantes, setToken, setHeaderButton}
     const requests = {}
 
     return (
-        <GlobalStateContext.Provider value={states, setters, requests}>
+        <GlobalStateContext.Provider value={{states, setters, requests}}>
             {props.children}
         </GlobalStateContext.Provider>
     )
