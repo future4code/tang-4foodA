@@ -1,10 +1,10 @@
-import React, { useContext, useEffect , useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useHistory } from "react-router-dom";
 import Header from '../../Components/Header';
 import { goBack, goToHomePage, goToProfilePage, goToRestaurantsPage } from '../../Routes/coordinators';
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import Buttons from '../../Components/Button';
-import { ContainerCarrinho, ContainerEndereco , MensagemVazio , SubtotalContainer , StyledForm } from './styles';
+import { ContainerCarrinho, ContainerEndereco , MensagemVazio , SubtotalContainer , StyledForm , CartPageContainer } from './styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -12,10 +12,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 export default function CartPage() {
     const history = useHistory();
     const {states, setters} = useContext(GlobalStateContext)
-
-    useEffect(() => {
-        setters.setHeaderButton(false)
-    }, [])
 
     const frete = 5.99 /* logica para puxar o frete*/
     const subtotal = 60.99 /* logica para puxar o subtotal*/
@@ -29,8 +25,8 @@ export default function CartPage() {
     
 
     return (
-        <div>
-            <Header pageName='Meu carrinho' />
+        <CartPageContainer>
+            <Header button='false' pageName='Meu carrinho' />
 
             <ContainerEndereco>
                 <p>Endereço de entrega</p>
@@ -49,23 +45,17 @@ export default function CartPage() {
                 </SubtotalContainer>
 
                 <StyledForm>
-                    <p>Forma de Pagamento</p>
-                    <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                        <FormControlLabel value="dinheiro" control={<Radio />} label="Dinheiro" /><br/>
-                        <FormControlLabel value="credito" control={<Radio />} label="Cartão de crédito" />
-                    </RadioGroup>
-
+                    <div>
+                        <p>Forma de Pagamento</p>
+                        <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                            <FormControlLabel value="dinheiro" control={<Radio />} label="Dinheiro" />
+                            <FormControlLabel value="credito" control={<Radio />} label="Cartão de crédito" />
+                        </RadioGroup>
+                    </div>
                     <Buttons texto='Confirmar'/>
                 </StyledForm>
 
             </ContainerCarrinho>
-
-
-
-
-
-
-
 
             <button onClick={() => goToHomePage(history)}>
                 HOME
@@ -79,6 +69,6 @@ export default function CartPage() {
             <button onClick={() => goBack(history)}>
                 VOLTAR
             </button>
-        </div>
+        </CartPageContainer>
     )
 }
