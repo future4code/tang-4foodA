@@ -10,6 +10,7 @@ import ProfilePage from "../Pages/ProfilePage";
 import RestaurantPage from "../Pages/RestaurantPage";
 import SignUpPage from "../Pages/SignUpPage";
 import ErrorPage from "../Pages/ErrorPage";
+import SearchPage from '../Pages/SearchPage'
 
 
 
@@ -50,6 +51,10 @@ export default function Routes() {
 
                 <Route exact path="/sign-up">
                     <SignUpPage/>
+                </Route>
+
+                <Route exact path="/search">
+                    <SearchPage/>
                 </Route>
 
                 <Route>
