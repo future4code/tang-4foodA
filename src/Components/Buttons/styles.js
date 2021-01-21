@@ -5,11 +5,8 @@ export const ContainerButton = styled(Button)`
 width: 20.5rem;
 display: flex;
 align-items: center;
-
 `
 
 export const CampoButton = styled.div`
 text-align:center;
-
- 
 `
