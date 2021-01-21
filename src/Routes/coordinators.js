@@ -30,6 +30,10 @@ export const goToSignUpPage = (history) => {
     history.push('/sign-up')
 }
 
+export const goToSearchPage = (history) => {
+    history.push('/search')
+}
+
 export const goBack = (history) => {
     history.goBack()
 }
