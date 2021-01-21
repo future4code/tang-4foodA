@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { goToHomePage, goToSignUpPage } from "../../Routes/coordinators";
+import { goBack, goToHomePage } from "../../Routes/coordinators";
+import FormLogin from "../../Components/FormLogin";
+import Header from "../../Components/Header";
+import Buttons from "../../Components/Button";
 import InitialScreen from "../../Components/InitialScreen";
-import Button from '@material-ui/core/Button';
 
 export default function LoginPage() {
   const history = useHistory();
@@ -19,13 +21,7 @@ export default function LoginPage() {
   return (
     <>
       {!exibirLogin && <InitialScreen />}
-      {exibirLogin && (
-        <div>
-          login
-          <Button  variant="contained" color="primary" onClick={() => goToSignUpPage(history)}>CADASTRO</Button>
-          <button onClick={() => goToHomePage(history)}>HomePage</button>
-        </div>
-      )}
+      {exibirLogin && <FormLogin texto={"Entrar"} />}
     </>
   );
 }
