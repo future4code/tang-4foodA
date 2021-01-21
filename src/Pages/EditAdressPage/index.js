@@ -2,19 +2,18 @@ import React from 'react'
 import { useHistory } from "react-router-dom";
 import { goBack, goToHomePage } from '../../Routes/coordinators';
 import FormAdress from '../../Components/FormAdress'
-import { Title } from './styles'
+import Header from '../../Components/Header'
 import Buttons from '../../Components/Button';
 
 export default function EditAdressPage() {
     const history = useHistory();
 
+    
     return (
         <div>
-
-            {/* <Title>Meu endereço</Title> */}
+            <Header />
             <FormAdress
             texto={"Endereço"} />
-            <Buttons />
             <button onClick={() => goToHomePage(history)}>
                 HomePage
             </button>

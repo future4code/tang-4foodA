@@ -1,12 +1,15 @@
 import React from 'react';
-import Button from "@material-ui/core/Button";
 import { ContainerButton, CampoButton} from './styles'
 
-export default function Buttons() {
+export default function Buttons(props) {
     return (
         <CampoButton>
-          <ContainerButton color="primary" variant="contained">
-            Salvar
+          <ContainerButton 
+          type="submit"
+          color="primary" 
+          variant="contained"
+          onClick={props.submeter}>
+            {props.texto}
           </ContainerButton>
         </CampoButton>
     )

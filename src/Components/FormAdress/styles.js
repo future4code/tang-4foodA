@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 export const Title = styled.h1`
   text-align: center;
   font-size: 1rem;
-  font-weight: normal;
+  /* font-weight: normal; */
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
