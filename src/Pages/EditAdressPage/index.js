@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { goBack, goToHomePage } from '../../Routes/coordinators';
 import FormAdress from '../../Components/FormAdress'
 import Header from '../../Components/Header'
-import Buttons from '../../Components/Button';
+import Buttons from '../../Components/Buttons';
 
 export default function EditAdressPage() {
     const history = useHistory();
@@ -11,9 +11,9 @@ export default function EditAdressPage() {
     
     return (
         <div>
-            <Header />
-            <FormAdress
-            texto={"Endereço"} />
+            <Header 
+            pageName={"Endereço"} />
+            <FormAdress />
             <button onClick={() => goToHomePage(history)}>
                 HomePage
             </button>

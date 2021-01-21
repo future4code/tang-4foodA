@@ -1,12 +1,12 @@
 import React from "react";
-import Buttons from "../Button";
+import Buttons from "../Buttons";
 // import TextField from "@material-ui/core/TextField";
 // import Button from "@material-ui/core/Button";
 import { Container, CampoText, InputArea} from './styles';
 import { Title } from './styles';
 import useForm from '../../CustomHooks/useForm'
 
-export default function FormTextFields(props) {
+export default function FormAdress(props) {
   const [form, handleInput, resetState] = useForm({
     street:'',
     number:'',
