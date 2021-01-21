@@ -1,6 +1,17 @@
 import styled from "styled-components";
 
+export const CartPageContainer = styled.div `
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+`
+
+
 export const ContainerCarrinho = styled.div `
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     margin: 0 1rem;
 `
 
@@ -47,6 +58,11 @@ span:nth-child(2) {
 `
 
 export const StyledForm = styled.form `
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 p {
     border-bottom: 1px solid black;
     margin-bottom: 0.5rem;
