@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from "react-router-dom";
 import { goBack, goToHomePage } from '../../Routes/coordinators';
 import FormAdress from '../../Components/FormAdress';
-import Buttons from '../../Components/Button';
+import Buttons from '../../Components/Buttons';
 import Header from '../../Components/Header';
 
 
@@ -13,7 +13,7 @@ export default function AddAddressPage() {
         <div>
             <Header />
             <FormAdress 
-            texto={"Seu endereço"}/>
+            texto={"Meu endereço"}/>
             
             <button onClick={() => goToHomePage(history)}>
                 HomePage
