@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useContext} from "react";
 import { useHistory } from "react-router-dom";
 import {
   goToCartPage,
@@ -8,16 +8,18 @@ import {
 } from "../../Routes/coordinators";
 import Header from "../../Components/Header/index.js"
 import SearchBar from "../../Components/SearchBar/SearchBar"
+import GlobalStateContext from "../../Global/GlobalStateContext";
 
 export default function HomePage() {
+  
+  const {states, setters} = useContext(GlobalStateContext)
   const history = useHistory();
   
 
 
   return (
     <div>
-      home / feed
-      <Header pageName={'Ifuture'}/>
+      <Header button={"false"} pageName={'Ifuture'}/>
       <SearchBar/>
       <button onClick={() => goToCartPage(history)}>CARRINHO</button>
       <button onClick={() => goToRestaurantsPage(history)}>RESTAURANTES</button>

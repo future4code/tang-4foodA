@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import useStyles from './styles'
 import {Search} from "@material-ui/icons"
 import GlobalStateContext from "../../Global/GlobalStateContext";
-import {goToSearchPage} from "../../Routes/coordinators";
+import {goToSearchPage} from "../../Routes/coordinators"; 
 
 export default function SearchBar(props) {
     

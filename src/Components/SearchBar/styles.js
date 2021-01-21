@@ -8,7 +8,7 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems:' center',
         padding: '0 0.503rem 0 1.063rem',
-        margin: '0 16px',
+        margin: '0.5em 16px',
       },
       input: {
         border: 'none',
