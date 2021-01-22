@@ -19,7 +19,6 @@ const useStyles = makeStyles({
         justifyContent: 'space-between',
     },
     nomeRestaurante: {
-        width: '18.5rem',
         height: '1.125rem',
         margin: '0.75rem 1rem 0.25rem',
         fontFamily: 'Roboto',
