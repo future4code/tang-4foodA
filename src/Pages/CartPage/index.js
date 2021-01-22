@@ -8,6 +8,7 @@ import { ContainerCarrinho, ContainerEndereco , MensagemVazio , SubtotalContaine
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import FooterMenu from '../../Components/FooterMenu';
 
 export default function CartPage() {
     const history = useHistory();
@@ -56,8 +57,13 @@ export default function CartPage() {
                 </StyledForm>
 
             </ContainerCarrinho>
+            <FooterMenu/>
 
-            <button onClick={() => goToHomePage(history)}>
+
+
+
+
+            {/* <button onClick={() => goToHomePage(history)}>
                 HOME
             </button>
             <button onClick={() => goToRestaurantsPage(history)}>
@@ -68,7 +74,7 @@ export default function CartPage() {
             </button>
             <button onClick={() => goBack(history)}>
                 VOLTAR
-            </button>
+            </button> */}
         </CartPageContainer>
     )
 }
