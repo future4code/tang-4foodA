@@ -18,6 +18,7 @@ export const ContainerCarrinho = styled.div `
 export const ContainerEndereco = styled.div `
     background-color: #eeeeee;
     padding: 0.5rem;
+    margin-bottom: 1rem;
 p {
     margin: 0.5rem;
     color: #b8b8b8;
@@ -41,6 +42,7 @@ export const SubtotalContainer = styled.div `
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    margin-top: 0.5rem;
 span {
     display: block;
     font-size: 1rem;

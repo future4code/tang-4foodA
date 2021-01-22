@@ -9,6 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FooterMenu from '../../Components/FooterMenu';
+import ItemCard from '../../Components/ItemCard/ItemCard';
 
 export default function CartPage() {
     const history = useHistory();
@@ -35,7 +36,14 @@ export default function CartPage() {
             </ContainerEndereco>
 
             <ContainerCarrinho>
-                <MensagemVazio> Carrinho vazio </MensagemVazio> {/* ternario para renderizar o carrinho */}
+                
+                {/* ternario para renderizar itens ou mensagem vazio */}
+                
+                {/* <MensagemVazio> Carrinho vazio </MensagemVazio> */}
+
+                {/* map nos itens do carrinho para renderizar os cards */}
+                <ItemCard/>
+                <ItemCard/>
 
                 <SubtotalContainer>
                     <span> SUBTOTAL </span>
@@ -58,23 +66,6 @@ export default function CartPage() {
 
             </ContainerCarrinho>
             <FooterMenu/>
-
-
-
-
-
-            {/* <button onClick={() => goToHomePage(history)}>
-                HOME
-            </button>
-            <button onClick={() => goToRestaurantsPage(history)}>
-                RESTAURANTES
-            </button>
-            <button onClick={() => goToProfilePage(history)}>
-                PERFIL
-            </button>
-            <button onClick={() => goBack(history)}>
-                VOLTAR
-            </button> */}
         </CartPageContainer>
     )
 }
