@@ -28,5 +28,17 @@ export const InputArea = styled(TextField)`
 `;
 
 export const ContainerButton = styled(Button)`
-  width: 20.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: -0.39px;
+  text-transform: capitalize;
+`;
+
+export const CampoButton = styled.div`
+  text-align: center;
+  margin: 1rem;
 `;
