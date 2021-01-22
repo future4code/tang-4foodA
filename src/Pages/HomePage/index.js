@@ -10,6 +10,7 @@ import Header from "../../Components/Header/index.js"
 import SearchBar from "../../Components/SearchBar/SearchBar"
 import CardRestaurante from "../../Components/CardRestaurante/CardRestaurante"
 import FeedMenu from "../../Components/FeedMenu/FeedMenu"
+import FooterMenu from "../../Components/FooterMenu/index"
 import GlobalStateContext from "../../Global/GlobalStateContext";
 
 export default function HomePage() {
@@ -136,11 +137,7 @@ export default function HomePage() {
         : filteredArray.map(e => {
           return <CardRestaurante key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
           }) }
-      <button onClick={() => goToCartPage(history)}>CARRINHO</button>
-      <button onClick={() => goToRestaurantsPage(history)}>RESTAURANTES</button>
-      <button onClick={() => goToProfilePage(history)}>
-        PERFIL DO USUÁRIO
-      </button>
+      <FooterMenu/>
     </div>
   );
 }

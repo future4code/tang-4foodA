@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const FooterContainer = styled.div `
+    position: fixed;
+    bottom: 0;
     display: flex;
     width: 100vw;
     justify-content: space-evenly;
@@ -11,6 +13,6 @@ button {
     padding: 0;
     height: 3rem;
     border: none;
-    background: none;
+    background-color: white;
 }
 `
