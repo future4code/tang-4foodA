@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { goBack, goToHomePage } from "../../Routes/coordinators";
 import FormLogin from "../../Components/FormLogin";
 import Header from "../../Components/Header";
-import Buttons from "../../Components/Button";
+import Buttons from "../../Components/Buttons";
 import InitialScreen from "../../Components/InitialScreen";
 
 export default function LoginPage() {

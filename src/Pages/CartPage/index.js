@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Header from '../../Components/Header';
 import { goBack, goToHomePage, goToProfilePage, goToRestaurantsPage } from '../../Routes/coordinators';
 import GlobalStateContext from "../../Global/GlobalStateContext";
-import Buttons from '../../Components/Button';
+import Buttons from '../../Components/Buttons';
 import { ContainerCarrinho, ContainerEndereco , MensagemVazio , SubtotalContainer , StyledForm , CartPageContainer } from './styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';

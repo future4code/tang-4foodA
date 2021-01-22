@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Buttons from "../Button";
+import Buttons from "../Buttons";
 // import TextField from "@material-ui/core/TextField";
 // import Button from "@material-ui/core/Button";
 import { Container, CampoText, InputArea } from "./styles";
