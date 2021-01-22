@@ -4,15 +4,20 @@ import FormControl from "@material-ui/core/FormControl";
 
 
 export const ContainerSignUp = styled.div`
-
+    display: flex;
+    flex-direction: column;
+    /* justify-content:center; */
+    align-items: center;
+   
+    
 `
 export const ContainerInputPassword = styled(FormControl)`
-  width:20.5rem;
+  /* width:20.5rem; */
   `
 
 export const Image = styled.div`
-text-align: center;
-margin:2.5rem 0 1.75rem 0;
+    text-align: center;
+    margin:2.5rem 0 1.75rem 0;
 `
 export const Title = styled.h1`
     font-family: Roboto;
@@ -27,13 +32,13 @@ export const Title = styled.h1`
 
 export const Container = styled.div`
     display: flex;
+    width: 20.5rem;
     flex-direction: column; 
     align-items: center;
-    margin: 0.5rem;
 `
 
 export const CampoText = styled.div`
-    margin: 0.5rem;
+    margin: 1rem;
 `
 
 export const InputArea = styled(TextField)`
