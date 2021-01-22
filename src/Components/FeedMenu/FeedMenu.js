@@ -1,14 +1,42 @@
-import React,{useContext} from 'react'
-import SearchBar from "../../Components/SearchBar/SearchBar"
-import Header from "../../Components/Header/index"
+import React, {useState, useContext} from 'react'
+import styled from "styled-components"
 import GlobalStateContext from "../../Global/GlobalStateContext";
-import useStyles from './styles'
-import CardRestaurante from "../../Components/CardRestaurante/CardRestaurante"
 
-export default function SearchPage() {
+const Menu = styled.div`
+    height: 2.625rem;
+    margin: 0.5rem 0.5rem 0;
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
 
-    const {states, setters} = useContext(GlobalStateContext)
-    const classes = useStyles()
+    a {
+        margin: 0.75em;
+        color: var(--black);
+        width: 5.438rem;
+        height: 1.125rem;
+        font-family: Roboto;
+        font-size: 1rem;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+        text-align: center;
+    }
+
+    .red {
+        color: #e8222e;
+    }
+
+`
+
+export default function FeedMenu() {
+
     const teste = [
         {
           "id": "1",
@@ -112,19 +140,31 @@ export default function SearchPage() {
         }
       ]
 
-      const filteredArray = teste.filter(e => {
-        return e.name.toLowerCase().includes(states.searchInput.toLowerCase()) || e.category.toLowerCase().includes(states.searchInput.toLowerCase())
-      })
-     
+    const {states, setters} = useContext(GlobalStateContext)
+
+    const changeCategory = (value) => {
+        if (states.filter !== value) {
+            setters.setFilter(value)
+        } else if (states.filter === value) {
+            setters.setFilter("")
+        }
+    }
+
+    const [categoriesArray, setCategoriesArray] = useState([])
+
+     teste.map(e=> {
+        const position = categoriesArray.findIndex((item) => item === e.category)
+
+        if (position === -1) {
+            setCategoriesArray([...categoriesArray, e.category])
+        }
+    }) 
 
     return (
-        <div>
-            <Header pageName={"Busca"}/>
-            <SearchBar onclick={"off"}/>
-            {states.searchInput === "" ? <p className={classes.searchPlaceholder}>Busque por nome de Restaurante</p>  
-                : filteredArray.map(e => {
-                return <CardRestaurante key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
-                }) }
-        </div>
+        <Menu>
+            {categoriesArray.map(e => {
+                return <a key={e} className={ states.filter === e? "red" : null} onClick={() => changeCategory(e)}>{e}</a>
+            })}
+        </Menu>
     )
 }

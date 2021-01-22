@@ -27,7 +27,7 @@ export default function CardRestaurante(props) {
                     {props.tempoDeEntrega} min 
                 </p>
                 <p className={classes.taxaDeEntrega}>
-                    {props.frete? props.frete : "Frete Grátis"}
+                  {props.frete? `Frete R$ ${props.frete},00` : "Frete Grátis"}
                 </p>
               </div>
 
