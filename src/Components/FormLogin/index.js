@@ -37,9 +37,9 @@ const FormLogin = () => {
   const { setters } = useContext(GlobalStateContext);
   const formRef = useRef(null);
   const [showSenha, setShowSenha] = useState(false);
-  const [form, handleInput, handleFormErrors] = useForm({
-    email: "",
-    password: "",
+  const [form, handleInput, resetState, handleFormErrors] = useForm({
+    email: undefined,
+    password: undefined,
     errors: {
       email: null,
       password: null,
@@ -73,11 +73,14 @@ const FormLogin = () => {
       });
 
       const response = await api.post("/login", form);
+
       window.localStorage.setItem("token", response.data.token);
       setters.setToken(response.data.token);
       setters.setPerfil(response.data.user);
+
       goToHomePage(history);
     } catch (err) {
+      console.log(err.inner);
       if (err.inner) {
         const errors = getValidationErrors(err);
         handleFormErrors(errors);
@@ -92,6 +95,7 @@ const FormLogin = () => {
         if (err.response.data.message === "Senha inválida") {
           toast.error("Senha inválida");
         }
+        return;
       }
 
       throw err;
@@ -102,7 +106,9 @@ const FormLogin = () => {
     setShowSenha(!showSenha);
   };
 
-  const handleMouseDownPassword = () => {};
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <Grid
@@ -122,7 +128,7 @@ const FormLogin = () => {
               <InputArea
                 required
                 autoFocus
-                value={form.email || undefined}
+                value={form.email}
                 onChange={handleInput}
                 name="email"
                 label="E-mail"
@@ -136,7 +142,7 @@ const FormLogin = () => {
             <CampoText>
               <InputArea
                 required
-                value={form.senha || undefined}
+                value={form.senha}
                 onChange={handleInput}
                 name="password"
                 id="outlined-disabled"
