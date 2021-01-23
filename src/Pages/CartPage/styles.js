@@ -1,10 +1,19 @@
 import styled from "styled-components";
 
 export const CartPageContainer = styled.div `
+    width: 100vw !important; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+`
+
+export const ScrollSection = styled.div `
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: auto;
+    margin-bottom: 3rem;
 `
 
 
@@ -30,6 +39,26 @@ p:nth-child(2) {
     font-weight: 500;
 }
 `
+
+export const ContainerRestaurante = styled.div `
+    margin: 0 1rem 0.5rem 1rem;
+h2 {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    letter-spacing: -0.39px;
+    color: #e8222e;
+    font-weight: 500;
+}
+p {
+    margin: 0;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.39px;
+    color: #b8b8b8;
+}
+`
+
 
 export const MensagemVazio = styled.div `
     text-align: center;

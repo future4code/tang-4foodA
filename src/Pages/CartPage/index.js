@@ -4,7 +4,17 @@ import Header from '../../Components/Header';
 import { goBack, goToHomePage, goToProfilePage, goToRestaurantsPage } from '../../Routes/coordinators';
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import Buttons from '../../Components/Buttons';
-import { ContainerCarrinho, ContainerEndereco , MensagemVazio , SubtotalContainer , StyledForm , CartPageContainer } from './styles';
+import PopUpQuantidade from "../../Components/PopUpQuantidade";
+import { 
+    ContainerCarrinho, 
+    ContainerEndereco , 
+    MensagemVazio , 
+    SubtotalContainer , 
+    StyledForm , 
+    CartPageContainer,
+    ContainerRestaurante,
+    ScrollSection
+} from './styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -28,43 +38,51 @@ export default function CartPage() {
 
     return (
         <CartPageContainer>
+            {states.popUp ? <PopUpQuantidade/> : null}
             <Header button='false' pageName='Meu carrinho' />
+            <ScrollSection>
+                <ContainerEndereco>
+                    <p>Endereço de entrega</p>
+                    <p>Rua Alessandra, 42</p> {/* lógica para puxar endereço */}
+                </ContainerEndereco>
 
-            <ContainerEndereco>
-                <p>Endereço de entrega</p>
-                <p>Rua Alessandra, 42</p> {/* lógica para puxar endereço */}
-            </ContainerEndereco>
+                {/* lógica para renderizar restaurante */}
+                <ContainerRestaurante>
+                    <h2>Nome restaurante</h2>
+                    <p>Endereço restaurante</p>
+                    <p>tempo entrega</p>
+                </ContainerRestaurante>
 
-            <ContainerCarrinho>
-                
-                {/* ternario para renderizar itens ou mensagem vazio */}
-                
-                {/* <MensagemVazio> Carrinho vazio </MensagemVazio> */}
+                <ContainerCarrinho>
+                    
+                    {/* ternario para renderizar itens ou mensagem vazio */}
+                    
+                    {/* <MensagemVazio> Carrinho vazio </MensagemVazio> */}
 
-                {/* map nos itens do carrinho para renderizar os cards */}
-                <ItemCard/>
-                <ItemCard/>
+                    {/* map nos itens do carrinho para renderizar os cards */}
+                    <ItemCard/>
 
-                <SubtotalContainer>
-                    <span> SUBTOTAL </span>
-                    <div>
-                        <span> Frete R${frete}</span> {/* logica para puxar o frete*/ }
-                        <span> R$ {subtotal}</span> {/* logica para puxar o subtotal*/ }
-                    </div>
-                </SubtotalContainer>
+                    <SubtotalContainer>
+                        <span> SUBTOTAL </span>
+                        <div>
+                            <span> Frete R${frete}</span> {/* logica para puxar o frete*/ }
+                            <span> R$ {subtotal}</span> {/* logica para puxar o subtotal*/ }
+                        </div>
+                    </SubtotalContainer>
 
-                <StyledForm>
-                    <div>
-                        <p>Forma de Pagamento</p>
-                        <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                            <FormControlLabel value="dinheiro" control={<Radio />} label="Dinheiro" />
-                            <FormControlLabel value="credito" control={<Radio />} label="Cartão de crédito" />
-                        </RadioGroup>
-                    </div>
-                    <Buttons texto='Confirmar'/>
-                </StyledForm>
+                    <StyledForm>
+                        <div>
+                            <p>Forma de Pagamento</p>
+                            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                                <FormControlLabel value="dinheiro" control={<Radio />} label="Dinheiro" />
+                                <FormControlLabel value="credito" control={<Radio />} label="Cartão de crédito" />
+                            </RadioGroup>
+                        </div>
+                        <Buttons texto='Confirmar'/>
+                    </StyledForm>
 
-            </ContainerCarrinho>
+                </ContainerCarrinho>
+            </ScrollSection>
             <FooterMenu/>
         </CartPageContainer>
     )

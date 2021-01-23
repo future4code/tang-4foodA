@@ -6,11 +6,9 @@ import FormControl from "@material-ui/core/FormControl";
 export const ContainerSignUp = styled.div`
     display: flex;
     flex-direction: column;
-    /* justify-content:center; */
-    align-items: center;
-   
-    
+    align-items: center;  
 `
+
 export const ContainerInputPassword = styled(FormControl)`
   /* width:20.5rem; */
   `
@@ -19,7 +17,7 @@ export const Image = styled.div`
     text-align: center;
     margin:2.5rem 0 1.75rem 0;
 `
-export const Title = styled.h1`
+export const Title = styled.h3`
     font-family: Roboto;
     text-align: center;
     font-size: 1rem;
