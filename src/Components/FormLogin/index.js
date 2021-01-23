@@ -1,10 +1,12 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useContext } from "react";
 import * as Yup from "yup";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, InputAdornment, IconButton } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { Form } from "@unform/web";
-
+import api from "../../Service/api";
+import { goToHomePage, goToSignUpPage } from "../../Routes/coordinators";
+import { useHistory } from "react-router-dom";
 import {
   Container,
   CampoText,
@@ -15,6 +17,8 @@ import {
 import { Title } from "./styles";
 import useForm from "../../CustomHooks/useForm";
 import Logo from "../../assets/logo-future-eats-invert.svg";
+import { toast } from "react-toastify";
+import GlobalStateContext from "../../Global/GlobalStateContext";
 
 const useStyles = makeStyles({
   root: {
@@ -29,11 +33,13 @@ const useStyles = makeStyles({
 });
 const FormLogin = () => {
   const classes = useStyles();
+  const history = useHistory();
+  const { setters } = useContext(GlobalStateContext);
   const formRef = useRef(null);
   const [showSenha, setShowSenha] = useState(false);
-  const [form, handleInput, resetState, handleFormErrors] = useForm({
-    email: undefined,
-    password: undefined,
+  const [form, handleInput, handleFormErrors] = useForm({
+    email: "",
+    password: "",
     errors: {
       email: null,
       password: null,
@@ -66,12 +72,29 @@ const FormLogin = () => {
         abortEarly: false,
       });
 
-      resetState();
-      // await api.post('/sessions', form);
+      const response = await api.post("/login", form);
+      window.localStorage.setItem("token", response.data.token);
+      setters.setToken(response.data.token);
+      setters.setPerfil(response.data.user);
+      goToHomePage(history);
     } catch (err) {
-      const errors = getValidationErrors(err);
-      handleFormErrors(errors);
-      console.log(errors);
+      if (err.inner) {
+        const errors = getValidationErrors(err);
+        handleFormErrors(errors);
+        return;
+      }
+      if (err.response) {
+        if (err.response.data.message === "Usuário não encontrado") {
+          toast.error("Usuário não encontrado");
+
+          goToSignUpPage(history);
+        }
+        if (err.response.data.message === "Senha inválida") {
+          toast.error("Senha inválida");
+        }
+      }
+
+      throw err;
     }
   };
 
@@ -88,7 +111,7 @@ const FormLogin = () => {
       justify="center"
       alignItems="center"
     >
-      <Grid item xs={0} className={classes.main}>
+      <Grid item xs="auto" className={classes.main}>
         <div>
           <img src={Logo} alt="logo" />
         </div>
@@ -99,7 +122,7 @@ const FormLogin = () => {
               <InputArea
                 required
                 autoFocus
-                value={form.email}
+                value={form.email || undefined}
                 onChange={handleInput}
                 name="email"
                 label="E-mail"
@@ -113,7 +136,7 @@ const FormLogin = () => {
             <CampoText>
               <InputArea
                 required
-                value={form.senha}
+                value={form.senha || undefined}
                 onChange={handleInput}
                 name="password"
                 id="outlined-disabled"
