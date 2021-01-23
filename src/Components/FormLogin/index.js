@@ -80,7 +80,6 @@ const FormLogin = () => {
 
       goToHomePage(history);
     } catch (err) {
-      console.log(err.inner);
       if (err.inner) {
         const errors = getValidationErrors(err);
         handleFormErrors(errors);
@@ -88,12 +87,12 @@ const FormLogin = () => {
       }
       if (err.response) {
         if (err.response.data.message === "Usuário não encontrado") {
-          toast.error("Usuário não encontrado");
+          toast.error("Usuário não cadastrado");
 
           goToSignUpPage(history);
         }
-        if (err.response.data.message === "Senha inválida") {
-          toast.error("Senha inválida");
+        if (err.response.data.message === "Senha incorreta") {
+          toast.error("Senha incorreta");
         }
         return;
       }
