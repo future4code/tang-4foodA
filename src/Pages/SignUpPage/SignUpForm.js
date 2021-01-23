@@ -1,8 +1,7 @@
 import React from 'react';
 import Buttons from '../../Components/Buttons'
-import { Container, CampoText, InputArea, Title, ContainerSignUp, Image, ContainerInputPassword } from './styles';
+import { Container, CampoText, InputArea, Title, ContainerSignUp, Image } from './styles';
 import Logo from '../../assets/logo-future-eats-invert.png';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { IconButton, InputAdornment, InputLabel } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -49,8 +48,8 @@ export default function SignUpForm(props) {
                         <InputArea
                             required
                             autoFocus
-                            value={form.name}
-                            onChange={handleInput}
+                            value={ form.name }
+                            onChange={ handleInput }
                             name="name"
                             label="Nome"
                             placeholder="Nome e sobrenome"
@@ -63,8 +62,8 @@ export default function SignUpForm(props) {
                     <CampoText>
                         <InputArea
                             required
-                            value={form.email}
-                            onChange={handleInput}
+                            value={ form.email }
+                            onChange={ handleInput }
                             name="email"
                             id="outlined-disabled"
                             label="E-mail"
@@ -78,8 +77,8 @@ export default function SignUpForm(props) {
                     <CampoText>
                         <InputArea
                             required
-                            value={form.cpf}
-                            onChange={handleInput}
+                            value={ form.cpf }
+                            onChange={ handleInput }
                             name="cpf"
                             label="CPF"
                             // defaultValue="Apt / Bloco"
@@ -147,7 +146,6 @@ export default function SignUpForm(props) {
                 <Buttons
                     texto={"Criar"} 
                     submeter = {() => goToAddAddressPage(history)}
-
                 />
             </form>
         </ContainerSignUp>

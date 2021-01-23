@@ -1,18 +1,17 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
-import { goBack, goToCartPage, goToEditPage, goToHomePage, goToProfilePage, goToRestaurantsPage } from '../../Routes/coordinators';
-
+import EditProfileForm from './EditProfileForm'
+import Header from '../../Components/Header'
 
 export default function EditProfilePage() {
-    const history = useHistory();
 
     return (
         <div>
-            Editar usuário / endereço
+            <Header 
+            pageName="Editar"
+            />
 
-            <button onClick={() => goBack(history)}>
-                VOLTAR
-            </button>
+            <EditProfileForm />
+        
         </div>
     )
 }
