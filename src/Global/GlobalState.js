@@ -13,10 +13,11 @@ export default function GlobalState(props) {
     const [token, setToken] = useState("")
     const [searchInput, setSearchInput] = useState("") /* Controla input da barra de pesquisa */
     const [filter, setFilter] = useState("") /* Controla o filtro do menu do feed */
+    const [popUp, setPopUp] = useState(false)
 
 
-    const states = {carrinho, perfil, restaurante, listaRestaurantes, token, searchInput, filter}
-    const setters = {setCarrinho, setPerfil, setRestaurante, setListaRestaurantes, setToken, setSearchInput, setFilter}
+    const states = {carrinho, perfil, restaurante, listaRestaurantes, token, searchInput, filter, popUp}
+    const setters = {setCarrinho, setPerfil, setRestaurante, setListaRestaurantes, setToken, setSearchInput, setFilter, setPopUp}
     const requests = {}
 
     return (

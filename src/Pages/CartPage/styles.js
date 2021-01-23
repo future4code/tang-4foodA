@@ -8,6 +8,14 @@ export const CartPageContainer = styled.div `
     min-height: 100vh;
 `
 
+export const ScrollSection = styled.div `
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: auto;
+    margin-bottom: 3rem;
+`
+
 
 export const ContainerCarrinho = styled.div `
     display: flex;
