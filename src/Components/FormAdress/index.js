@@ -1,12 +1,14 @@
 import React from "react";
 import Buttons from "../Buttons";
-// import TextField from "@material-ui/core/TextField";
-// import Button from "@material-ui/core/Button";
-import { Container, CampoText, InputArea} from './styles';
+import { Container, CampoText, InputArea, ContainerFormAddress } from './styles';
 import { Title } from './styles';
 import useForm from '../../CustomHooks/useForm'
+import { useHistory } from "react-router-dom";
+import { goToHomePage } from '../../Routes/coordinators';
 
 export default function FormAdress(props) {
+
+  const history = useHistory();
   const [form, handleInput, resetState] = useForm({
     street:'',
     number:'',
@@ -23,9 +25,9 @@ export default function FormAdress(props) {
   }
 
   return (
-    <div>
+    <ContainerFormAddress>
       <Title>{props.texto}</Title>
-      <form onSubmit={submitForm}>
+      <form onSubmit = { submitForm }>
         <Container>
           <CampoText>
             <InputArea
@@ -106,10 +108,13 @@ export default function FormAdress(props) {
               type="text"
             />
           </CampoText>
+          
         </Container>
         <Buttons 
-        texto={"salvar"}/>
+        texto={"salvar"}
+        submeter = {() => goToHomePage(history)} // trocar pela funçao de requisiçao na api. assim os inputs não estão controlados 
+        /> 
       </form>
-    </div>
+    </ContainerFormAddress>
   );
 }
