@@ -4,7 +4,15 @@ import Header from '../../Components/Header';
 import { goBack, goToHomePage, goToProfilePage, goToRestaurantsPage } from '../../Routes/coordinators';
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import Buttons from '../../Components/Buttons';
-import { ContainerCarrinho, ContainerEndereco , MensagemVazio , SubtotalContainer , StyledForm , CartPageContainer } from './styles';
+import { 
+    ContainerCarrinho, 
+    ContainerEndereco , 
+    MensagemVazio , 
+    SubtotalContainer , 
+    StyledForm , 
+    CartPageContainer,
+    ContainerRestaurante 
+} from './styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -35,6 +43,13 @@ export default function CartPage() {
                 <p>Rua Alessandra, 42</p> {/* lógica para puxar endereço */}
             </ContainerEndereco>
 
+            {/* lógica para renderizar restaurante */}
+            <ContainerRestaurante>
+                <h2>Nome restaurante</h2>
+                <p>Endereço restaurante</p>
+                <p>tempo entrega</p>
+            </ContainerRestaurante>
+
             <ContainerCarrinho>
                 
                 {/* ternario para renderizar itens ou mensagem vazio */}
@@ -42,7 +57,6 @@ export default function CartPage() {
                 {/* <MensagemVazio> Carrinho vazio </MensagemVazio> */}
 
                 {/* map nos itens do carrinho para renderizar os cards */}
-                <ItemCard/>
                 <ItemCard/>
 
                 <SubtotalContainer>
