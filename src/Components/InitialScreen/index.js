@@ -19,7 +19,7 @@ export default function InitialScreen() {
       justify="center"
       alignItems="center"
     >
-      <Grid item xs={0}>
+      <Grid item xs="auto">
         <img src={Logo} alt="logo" />
       </Grid>
     </Grid>
