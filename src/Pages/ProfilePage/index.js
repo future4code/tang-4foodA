@@ -18,6 +18,8 @@ import { DivPerfil,
          DivTotal
     } from './styles'
 import icon from '../../assets/iconelapis.png'
+import Header from '../../Components/Header';
+import FooterMenu from '../../Components/FooterMenu';
 
 export default function ProfilePage() {
     const history = useHistory();
@@ -26,9 +28,10 @@ export default function ProfilePage() {
       <div>
         <DivPerfil>
           <IconePerfil src={icon} />  
-          <HeaderDiv>
+          <Header button='false' pageName='Meu perfil'/>
+          {/* <HeaderDiv>
             Meu Perfil
-          </HeaderDiv>
+          </HeaderDiv> */}
           <CaixaPerfil>            
             <CaixaInfo>Bruna Olivera</CaixaInfo>
             <CaixaInfo>bruna_o@gmail.com</CaixaInfo>
@@ -59,19 +62,7 @@ export default function ProfilePage() {
           </ContainerDosPedidos>
 
         </DivPerfil>
-        perfil do usuário
-        <button onClick={() => goToHomePage(history)}>
-            HOME
-        </button>
-        <button onClick={() => goToCartPage(history)}>
-            CARRINHO
-        </button>
-        <button onClick={() => goToEditPage(history)}>
-            EDITAR PERFIL
-        </button>
-        <button onClick={() => goBack(history)}>
-            VOLTAR
-        </button>
+        <FooterMenu/>
       </div>
     )
 }
