@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Buttons from '../../Components/Buttons'
 import { Container, CampoText, InputArea, Title, ContainerSignUp, Image } from './styles';
 import Logo from '../../assets/logo-future-eats-invert.png';
@@ -9,6 +10,8 @@ import useForm from '../../CustomHooks/useForm';
 import { useHistory } from "react-router-dom";
 import { goToAddAddressPage } from '../../Routes/coordinators';
 
+
+
 export default function SignUpForm(props) {
     const history = useHistory();
     const [form, handleInput, resetState] = useForm({
@@ -18,6 +21,7 @@ export default function SignUpForm(props) {
         password: '',
         passwordConfirm: '',
     })
+
 
     const [showSenha, setShowSenha] = React.useState(false);
 
@@ -32,8 +36,21 @@ export default function SignUpForm(props) {
 
     const submitForm = (e) => {
         e.preventDefault()
-        resetState() //resetando os inputs//
-        console.log(form) //----------------------------------------------//
+       
+        const body = {
+            name: form.name,
+            email: form.email,
+            cpf: form.cpf,
+            password: form.password
+        }
+        console.log(body);//-------------------------------------------------//
+        axios.post('https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/signup', body)
+        .then((response) =>{
+            console.log(response.data.token);// token da criação do novo usuario
+        })
+        .catch((error) => {
+            console.log(error);
+        })
       }
 
     return (
@@ -93,6 +110,7 @@ export default function SignUpForm(props) {
                             required
                             value={form.password || undefined}
                             onChange={handleInput}
+                            // inputProps={{ pattern: "(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" }}
                             name="password"
                             id="outlined-disabled"
                             label="Senha"
@@ -145,7 +163,7 @@ export default function SignUpForm(props) {
                 </Container>
                 <Buttons
                     texto={"Criar"} 
-                    submeter = {() => goToAddAddressPage(history)}
+                    submeter = {submitForm}
                 />
             </form>
         </ContainerSignUp>
