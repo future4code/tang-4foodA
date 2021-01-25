@@ -28,8 +28,8 @@ export default function ItemCard(props) {
                 <p>Ingredientes do prato</p>
                 <FooterContainer>
                     <span>R$46,00</span>
-                    <AddBtn>adicionar</AddBtn> {/*ternario para alterar botões quanto necessário*/}
-                    {/* <RemoveBtn>remover</RemoveBtn> */}
+                    {/* <AddBtn>adicionar</AddBtn> ternario para alterar botões quanto necessário */}
+                    <RemoveBtn>remover</RemoveBtn>
                 </FooterContainer>
             </InfoContainer>
         </CardContainer>

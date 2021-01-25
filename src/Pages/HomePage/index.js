@@ -132,7 +132,8 @@ export default function HomePage() {
         : filteredArray.map(e => {
           return <CardRestaurante key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
           }) }
-     {/* ternário verificando se há pedido para renderizar <PedidoEmAndamento/> */}
+      {/* ternário verificando se há pedido para renderizar */}
+      {/* <PedidoEmAndamento/> */}
       <FooterMenu/>
     </div>
   );
