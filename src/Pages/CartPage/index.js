@@ -83,7 +83,7 @@ export default function CartPage() {
 
                 </ContainerCarrinho>
             </ScrollSection>
-            <FooterMenu/>
+            <FooterMenu page={"cart"}/>
         </CartPageContainer>
     )
 }

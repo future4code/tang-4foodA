@@ -62,7 +62,7 @@ export default function ProfilePage() {
           </ContainerDosPedidos>
 
         </DivPerfil>
-        <FooterMenu/>
+        <FooterMenu page={"profile"}/>
       </div>
     )
 }
