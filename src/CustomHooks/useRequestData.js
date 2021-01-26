@@ -11,7 +11,7 @@ export default function useRequestData(url,header, initialState) {
        }).catch((error) => {
            console.log(error.message)
        })
-   }, [url])
+   }, [url,header])
   
     return data
 }
