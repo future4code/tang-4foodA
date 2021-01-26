@@ -115,6 +115,10 @@ export default function SearchPage() {
       const filteredArray = teste.filter(e => {
         return e.name.toLowerCase().includes(states.searchInput.toLowerCase()) || e.category.toLowerCase().includes(states.searchInput.toLowerCase())
       })
+
+      const arrayMap = filteredArray.map(e => {
+        return <CardRestaurante key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
+        }) 
      
 
     return (
@@ -122,9 +126,7 @@ export default function SearchPage() {
             <Header pageName={"Busca"}/>
             <SearchBar onclick={"off"}/>
             {states.searchInput === "" ? <p className={classes.searchPlaceholder}>Busque por nome de Restaurante</p>  
-                : filteredArray.map(e => {
-                return <CardRestaurante key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
-                }) }
+                : (arrayMap[0]? arrayMap : <p className={classes.searchPlaceholder}>Não encontramos :(</p>) }
         </div>
     )
 }
