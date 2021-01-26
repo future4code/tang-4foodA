@@ -13,9 +13,12 @@ h3{
     font-weight: 500;
     letter-spacing: -0.39px;
 }
-button {
+`
+
+export const BackButton = styled.button `
+    position: absolute;
+    margin-top: -35px;
     margin-left: 1rem;
     border: none;
     background: none;
-}
 `
