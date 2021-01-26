@@ -5,6 +5,7 @@ import { Title } from './styles';
 import useForm from '../../CustomHooks/useForm'
 import { useHistory } from "react-router-dom";
 import { goToHomePage } from '../../Routes/coordinators';
+import { addAddress } from "../../Service/user";
 
 export default function FormAdress(props) {
 
@@ -22,6 +23,7 @@ export default function FormAdress(props) {
     e.preventDefault()
     resetState() //resetando os inputs//
     console.log(form) //----------------------------------------------//
+    addAddress(form, history)
   }
 
   return (
@@ -112,7 +114,7 @@ export default function FormAdress(props) {
         </Container>
         <Buttons 
         texto={"salvar"}
-        submeter = {() => goToHomePage(history)} // trocar pela funçao de requisiçao na api. assim os inputs não estão controlados 
+        submeter = {submitForm} 
         /> 
       </form>
     </ContainerFormAddress>
