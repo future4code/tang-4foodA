@@ -7,6 +7,7 @@ import FeedMenu from "../../Components/FeedMenu/FeedMenu"
 import FooterMenu from "../../Components/FooterMenu/index"
 import PedidoEmAndamento from "../../Components/PedidoEmAndamento/index"
 import GlobalStateContext from "../../Global/GlobalStateContext";
+import HomeDiv from "./styles"
 
 export default function HomePage() {
   
@@ -23,7 +24,7 @@ export default function HomePage() {
  
 
   return (
-    <div>
+    <HomeDiv>
       <Header button={"false"} pageName={'Ifuture'}/>
       <SearchBar/>
       <FeedMenu/>
@@ -36,6 +37,6 @@ export default function HomePage() {
       {/* ternário verificando se há pedido para renderizar */}
       {/* <PedidoEmAndamento/> */}
       <FooterMenu page={"home"}/>
-    </div>
+    </HomeDiv>
   );
 }
