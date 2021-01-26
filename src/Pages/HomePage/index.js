@@ -21,9 +21,6 @@ export default function HomePage() {
     return e.category === states.filter
   })
  
-  const onClickCardRestaurante = (name) => {
-    history.push(`/restaurants/${name}`)
-  }
 
   return (
     <div>
@@ -31,10 +28,10 @@ export default function HomePage() {
       <SearchBar/>
       <FeedMenu/>
       {states.filter === "" ? requests.listaDeRestaurantes.restaurants.map(e => {
-          return <CardRestaurante onClick={() => onClickCardRestaurante(e.name)} key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
+          return <CardRestaurante  key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
           }) 
         : filteredArray.map(e => {
-          return <CardRestaurante onClick={() => onClickCardRestaurante(e.name)} key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
+          return <CardRestaurante  key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
           }) }
       {/* ternário verificando se há pedido para renderizar */}
       {/* <PedidoEmAndamento/> */}
