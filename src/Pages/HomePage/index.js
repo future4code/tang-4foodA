@@ -10,7 +10,7 @@ import GlobalStateContext from "../../Global/GlobalStateContext";
 
 export default function HomePage() {
   
-  const {states, setters} = useContext(GlobalStateContext)
+  const {states, setters, requests} = useContext(GlobalStateContext)
   const history = useHistory();
 
   const teste = [
@@ -116,7 +116,12 @@ export default function HomePage() {
     }
   ]
 
-  const filteredArray = teste.filter(e => {
+
+  if (!requests.listaDeRestaurantes.restaurants) {
+    return <div>Loading...</div>
+  }
+
+  const filteredArray = requests.listaDeRestaurantes.restaurants.filter(e => {
     return e.category === states.filter
   })
  
