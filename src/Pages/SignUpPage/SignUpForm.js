@@ -9,6 +9,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import useForm from '../../CustomHooks/useForm';
 import { useHistory } from "react-router-dom";
 import { goToAddAddressPage } from '../../Routes/coordinators';
+import { signUp } from '../../Service/user';
 
 
 
@@ -44,13 +45,15 @@ export default function SignUpForm(props) {
             password: form.password
         }
         console.log(body);//-------------------------------------------------//
-        axios.post('https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/signup', body)
-        .then((response) =>{
-            console.log(response.data.token);// token da criação do novo usuario
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+        signUp(body, history)
+        
+        // axios.post('https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/signup', body)
+        // .then((response) =>{
+        //     console.log(response.data.token);// token da criação do novo usuario
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // })
       }
 
     return (
