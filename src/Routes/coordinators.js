@@ -22,8 +22,8 @@ export const goToProfilePage = (history) => {
     history.push('/profile')
 }
 
-export const goToRestaurantsPage = (history) => {
-    history.push('/restaurants')
+export const goToRestaurantsPage = (history, id) => {
+    history.push(`/restaurants/${id}`)
 }
 
 export const goToSignUpPage = (history) => {

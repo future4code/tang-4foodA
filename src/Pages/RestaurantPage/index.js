@@ -1,13 +1,18 @@
-import React from 'react'
-import { useHistory } from "react-router-dom";
-import { goBack, goToCartPage, goToHomePage, goToProfilePage, goToRestaurantsPage } from '../../Routes/coordinators';
+import React,{ useContext } from 'react'
+import { useHistory, useParams } from "react-router-dom";
 import Header from "../../Components/Header";
 import ItemCard from "../../Components/ItemCard/ItemCard";
-
 import { RestaurantInfo, MealsContainer, TypeTitle } from './styles';
+import GlobalStateContext from "../../Global/GlobalStateContext";
+
 
 export default function RestaurantPage() {
+    const {states, setters} = useContext(GlobalStateContext)
+
     const history = useHistory();
+    const params = useParams()
+
+
 
     return (
         <div>
@@ -30,18 +35,6 @@ export default function RestaurantPage() {
                 {/* map para renderizar pratos da categoria */}
                 <ItemCard/>
             </MealsContainer>
-
-{/* 
-            <button onClick={() => goToHomePage(history)}>
-                HOME
-            </button>
-            <button onClick={() => goToCartPage(history)}>
-                CARRINHO
-            </button>
-            <button onClick={() => goBack(history)}>
-                VOLTAR
-            </button> */}
-
         </div>
     )
 }
