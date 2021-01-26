@@ -7,15 +7,19 @@ export default function PopUpQuantidade() {
     const {states, setters} = useContext(GlobalStateContext)
 
 
-    const renderOptions = () => {
-        for (let i = 0; i < 10; i++) {
-            return (
-                <option value={0 + i} key={i}>
-                    {0 + i}
-                </option>
-            )
-        }
+    let quantity = []
+    for (let i = 0; i < 11; i++) {
+        quantity.push(i)
     }
+
+    const renderOptions = quantity.map((item) => {
+        return (
+            <option value={item} key={item}>
+                {item}
+            </option>
+        )            
+    })
+    
 
         // const handleSelect = (event) => {
         //     setQuantidade(event.target.value)
@@ -30,7 +34,7 @@ export default function PopUpQuantidade() {
                 <PopUpCard>
                     <p>Selecione a quantidade desejada</p>
                     <select name="quantidade" id="quantidade">
-                        {renderOptions()}
+                        {renderOptions}
                     </select>
                     <ButtonContainer>
                         <button onClick={() => addQuantidade()}>ADICIONAR AO CARRINHO</button>
