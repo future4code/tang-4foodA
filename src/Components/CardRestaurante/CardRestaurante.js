@@ -1,13 +1,19 @@
 import React from 'react'
 import CardMedia from '@material-ui/core/CardMedia';
 import useStyles from './styles.js'
+import { useHistory } from "react-router-dom";
 
 export default function CardRestaurante(props) {
 
     const classes = useStyles();
+    const history = useHistory();
+
+    const onClickCardRestaurante = (name) => {
+      history.push(`/restaurants/${name}`)
+    }
 
     return (
-        <div className={classes.cardContainer}>
+        <div onClick={() => onClickCardRestaurante(props.nome)} className={classes.cardContainer}>
         <div className={classes.card}>
           <div className={classes.cardContent}>
             <CardMedia
