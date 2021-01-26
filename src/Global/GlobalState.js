@@ -20,7 +20,7 @@ export default function GlobalState(props) {
         setToken(localStorage.getItem("token"))
     }, [])
 
-    const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {headers: {"auth": `${token}`, "Content-Type": "application/json"}}, {})
+    const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {headers: {"auth": localStorage.getItem('token'), "Content-Type": "application/json"}}, {})
     const states = {carrinho, perfil, restaurante, listaRestaurantes, token, searchInput, filter, popUp}
     const setters = {setCarrinho, setPerfil, setRestaurante, setListaRestaurantes, setToken, setSearchInput, setFilter, setPopUp}
     const requests = {listaDeRestaurantes}
