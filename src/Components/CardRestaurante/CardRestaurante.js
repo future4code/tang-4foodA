@@ -8,12 +8,12 @@ export default function CardRestaurante(props) {
     const classes = useStyles();
     const history = useHistory();
 
-    const onClickCardRestaurante = (name) => {
-      history.push(`/restaurants/${name}`)
+    const onClickCardRestaurante = (id) => {
+      history.push(`/restaurants/${id}`)
     }
 
     return (
-        <div onClick={() => onClickCardRestaurante(props.nome)} className={classes.cardContainer}>
+        <div onClick={() => onClickCardRestaurante(props.id)} className={classes.cardContainer}>
         <div className={classes.card}>
           <div className={classes.cardContent}>
             <CardMedia

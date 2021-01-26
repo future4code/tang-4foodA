@@ -19,7 +19,7 @@ export default function SearchPage() {
       })
 
       const arrayMap = filteredArray.map(e => {
-        return <CardRestaurante key={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
+        return <CardRestaurante key={e.id} id={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
         }) 
      
 

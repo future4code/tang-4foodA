@@ -45,7 +45,7 @@ export default function Routes() {
                     <ProfilePage/>
                 </Route>
 
-                <Route exact path="/restaurants/:restaurant-name">
+                <Route exact path="/restaurants/:restaurant-id">
                     <RestaurantPage/>
                 </Route>
 
