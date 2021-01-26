@@ -134,7 +134,7 @@ export default function HomePage() {
           }) }
       {/* ternário verificando se há pedido para renderizar */}
       {/* <PedidoEmAndamento/> */}
-      <FooterMenu/>
+      <FooterMenu page={"home"}/>
     </div>
   );
 }
