@@ -4,12 +4,12 @@ import { Container, CampoText, InputArea, ContainerFormAddress } from './styles'
 import { Title } from './styles';
 import useForm from '../../CustomHooks/useForm'
 import { useHistory } from "react-router-dom";
-import { goToHomePage } from '../../Routes/coordinators';
 import { addAddress } from "../../Service/user";
+import { CircularProgress } from "@material-ui/core";
+
 
 export default function FormAdress(props) {
-
-  const history = useHistory();
+  const [loading, setLoading] = React.useState(false)  
   const [form, handleInput, resetState] = useForm({
     street:'',
     number:'',
@@ -18,11 +18,12 @@ export default function FormAdress(props) {
     state:'',
     complement:''
   })
+  const history = useHistory();
 
   const submitForm = (e) => {
     e.preventDefault()
     resetState() //resetando os inputs//
-    addAddress(form, history)
+    addAddress(form, history, setLoading)//função está em service/user
   }
 
   return (
@@ -111,7 +112,8 @@ export default function FormAdress(props) {
           
         </Container>
         <Buttons 
-        texto={"salvar"}
+        // texto={"salvar"}
+        texto={ loading ? <CircularProgress color="secondary" size={24}/> : 'Salvar' } 
         submeter = {submitForm} 
         /> 
       </form>

@@ -156,8 +156,8 @@ export default function SignUpForm(props) {
                 </Container>
                 {showAlert && <AlertPassword>Deve ser a mesma que a anterior</AlertPassword>}
                 <Buttons
-                    texto={"Criar"} 
-                    // texto={ loading ? <CircularProgress color="secondary" size="24" /> : 'criar' } 
+                    // texto={"Criar"} 
+                    texto={ loading ? <CircularProgress color="secondary" size={24}/> : 'Criar' } 
                 />
             </form>
         </ContainerSignUp>

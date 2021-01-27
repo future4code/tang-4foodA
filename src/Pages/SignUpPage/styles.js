@@ -3,10 +3,7 @@ import TextField from "@material-ui/core/TextField";
 
 
 export const ContainerSignUp = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    max-width: 100vw;
+    margin: 1rem;
 `
 
 export const Image = styled.div`
@@ -25,18 +22,15 @@ export const Title = styled.h3`
 `
 
 export const Container = styled.div`
-    display: flex;
-    width: 20.5rem;
-    flex-direction: column; 
-    align-items: center;
+  
 `
 
 export const CampoText = styled.div`
-    margin:0.5rem 0;
+    margin: 1rem 0;
 `
 
 export const InputArea = styled(TextField)`
-    width: 20.5rem;
+    width:100%;
     height: 3.5rem;
 `
 
