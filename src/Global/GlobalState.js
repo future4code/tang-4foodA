@@ -11,19 +11,14 @@ export default function GlobalState(props) {
     const [perfil, setPerfil] = useState({})
     const [restaurante, setRestaurante] = useState({})
     const [listaRestaurantes, setListaRestaurantes] = useState([])
-    const [token, setToken] = useState("")
+    // const [token, setToken] = useState("")
     const [searchInput, setSearchInput] = useState("") /* Controla input da barra de pesquisa */
     const [filter, setFilter] = useState("") /* Controla o filtro do menu do feed */
     const [popUp, setPopUp] = useState(false)
    
-    useEffect(() => {
-        setToken(localStorage.getItem("token"))
-    }, [])
-
-    const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {headers: {"auth": localStorage.getItem('token'), "Content-Type": "application/json"}}, {})
-    const states = {carrinho, perfil, restaurante, listaRestaurantes, token, searchInput, filter, popUp}
-    const setters = {setCarrinho, setPerfil, setRestaurante, setListaRestaurantes, setToken, setSearchInput, setFilter, setPopUp}
-    const requests = {listaDeRestaurantes}
+    const states = {carrinho, perfil, restaurante, listaRestaurantes, searchInput, filter, popUp}
+    const setters = {setCarrinho, setPerfil, setRestaurante, setListaRestaurantes, setSearchInput, setFilter, setPopUp}
+    const requests = {}
 
     return (
         <GlobalStateContext.Provider value={{states, setters, requests}}>
