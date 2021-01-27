@@ -16,7 +16,7 @@ export default function RestaurantPage() {
     const history = useHistory();
     const params = useParams()
 
-    const data = useRequestData(`${BASE_URL}/restaurants/${params.id}`,{headers: {"auth": localStorage.getItem('token')}},{})
+    const data = useRequestData(`${BASE_URL}/restaurants/${params.id}`,{})
     
     useEffect(() => {
         setters.setRestaurante(data.restaurant)

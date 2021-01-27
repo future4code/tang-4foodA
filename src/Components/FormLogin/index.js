@@ -75,7 +75,6 @@ const FormLogin = () => {
       const response = await api.post("/login", form);
 
       window.localStorage.setItem("token", response.data.token);
-      setters.setToken(response.data.token);
       setters.setPerfil(response.data.user);
 
       goToHomePage(history);
