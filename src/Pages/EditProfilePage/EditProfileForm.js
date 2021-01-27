@@ -3,22 +3,22 @@ import Buttons from '../../Components/Buttons'
 import { Container, CampoText, InputArea, ContainerEditProfile } from './styles';
 import useForm from '../../CustomHooks/useForm'
 import { useHistory } from "react-router-dom";
-import { goToProfilePage } from '../../Routes/coordinators';
+import { editProfile } from '../../Service/editUser';
+import { CircularProgress } from '@material-ui/core';
 
 export default function EditProfileForm() {
-
-    const history = useHistory();
+    const [loading, setLoading] = React.useState(false)
     const [form, handleInput, resetState] = useForm({
         name: '',
         email: '',
         cpf: '',
     })
-
+    const history = useHistory();
 
     const submitForm = (e) => {
         e.preventDefault()
         resetState() //resetando os inputs//
-        console.log(form) //----------------------------------------------//
+        editProfile(form, history, setLoading)//funçao está em service/user
       }
 
     return (
@@ -68,8 +68,8 @@ export default function EditProfileForm() {
                     </CampoText>
                 </Container>
                 <Buttons
-                    texto={"Salvar"} 
-                    submeter = {() => goToProfilePage(history)}// trocar pela funçao de requisiçao na api. assim os inputs não estão controlados
+                    // texto={"Salvar"} 
+                    texto={ loading ? <CircularProgress color="secondary" size={24}/> : 'Salvar' } 
                 />
             </form>
         </ContainerEditProfile>

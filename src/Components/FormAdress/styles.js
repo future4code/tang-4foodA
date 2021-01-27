@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 import TextField from "@material-ui/core/TextField";
-// import Button from "@material-ui/core/Button";
 
 
 export const ContainerFormAddress = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;  
+    margin: 1rem;
 `
 
 export const Title = styled.h1`
@@ -21,17 +18,14 @@ export const Title = styled.h1`
 `
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
-  width: 20.5rem;
+ 
 `
 
 export const CampoText = styled.div`
- margin: 1rem;
+ margin: 1rem 0;
 `
 
 export const InputArea = styled(TextField)`
-  width: 20.5rem;
-  height: 3.5rem;
+  width: 100%;
+  height:3.5rem;
 `
