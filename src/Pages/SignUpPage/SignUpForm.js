@@ -8,13 +8,16 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import useForm from '../../CustomHooks/useForm';
 import { useHistory } from "react-router-dom";
 import { signUp } from '../../Service/user';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 export default function SignUpForm(props) {
-    const [showSenha, setShowSenha] = React.useState(false)
-    const [showAlert, setShowAlert] = React.useState (false)
+    const [ showSenha, setShowSenha ] = React.useState(false)
+    const [ showAlert, setShowAlert ] = React.useState (false)
+    const [ loading, setLoading ] = React.useState(false)
+
     const history = useHistory();
+
     const [form, handleInput ] = useForm({
         name: '',
         email: '',
@@ -42,7 +45,7 @@ export default function SignUpForm(props) {
             cpf: form.cpf,
             password: form.password
         }
-        signUp(body, history)
+        signUp(body, history, setLoading)// funçao está em service/user
       }
 
     return (
@@ -88,10 +91,10 @@ export default function SignUpForm(props) {
                             onChange={ handleInput }
                             name="cpf"
                             label="CPF"
-                            // defaultValue="Apt / Bloco"
+                            inputProps={{ pattern: "[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}" }}
                             placeholder="000.000.000-00"
                             variant="outlined"
-                            type="number"
+                            // type="number"
                         />
                     </CampoText>
 
@@ -149,14 +152,12 @@ export default function SignUpForm(props) {
                                 ),
                             }}
                         />
-                    </CampoText>
-                        
+                    </CampoText>   
                 </Container>
                 {showAlert && <AlertPassword>Deve ser a mesma que a anterior</AlertPassword>}
                 <Buttons
                     texto={"Criar"} 
-                    // submeter = {submitForm}
-                    // type
+                    // texto={ loading ? <CircularProgress color="secondary" size="24" /> : 'criar' } 
                 />
             </form>
         </ContainerSignUp>

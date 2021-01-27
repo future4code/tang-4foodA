@@ -1,17 +1,13 @@
 import styled from 'styled-components';
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
 
 
 export const ContainerSignUp = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;  
+    align-items: center; 
+    max-width: 100vw;
 `
-
-export const ContainerInputPassword = styled(FormControl)`
-  /* width:20.5rem; */
-  `
 
 export const Image = styled.div`
     text-align: center;
@@ -43,6 +39,7 @@ export const InputArea = styled(TextField)`
     width: 20.5rem;
     height: 3.5rem;
 `
+
 export const AlertPassword = styled.p`
     color:#e02020;
     font-size: 0.75rem;
