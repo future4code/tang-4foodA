@@ -15,7 +15,7 @@ export const ContainerInputPassword = styled(FormControl)`
 
 export const Image = styled.div`
     text-align: center;
-    margin:2.5rem 0 1.75rem 0;
+    margin: 1.5rem 0 1.75rem 0;
 `
 export const Title = styled.h3`
     font-family: Roboto;
@@ -36,10 +36,16 @@ export const Container = styled.div`
 `
 
 export const CampoText = styled.div`
-    margin: 1rem;
+    margin:0.5rem 0;
 `
 
 export const InputArea = styled(TextField)`
     width: 20.5rem;
     height: 3.5rem;
+`
+export const AlertPassword = styled.p`
+    color:#e02020;
+    font-size: 0.75rem;
+    letter-spacing: -0.29px;
+    margin:0 0 0.75rem 1rem;
 `
