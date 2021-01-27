@@ -7,7 +7,6 @@ import SignUpForm from './SignUpForm';
 
 
 export default function SignUpPage() {
-    const history = useHistory();
 
     return (
         <div>
@@ -17,15 +16,6 @@ export default function SignUpPage() {
             texto={"Cadastrar"}
             />
 
-           
-{/* 
-            cadastro de usuário
-            <button onClick={() => goToAddAddressPage(history)}>
-                CADASTRAR ENDEREÇO
-            </button>
-            <button onClick={() => goBack(history)}>
-                VOLTAR
-            </button> */}
         </div>
     )
 }

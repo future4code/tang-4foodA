@@ -1,21 +1,21 @@
 import React from 'react';
-import axios from 'axios';
 import Buttons from '../../Components/Buttons'
-import { Container, CampoText, InputArea, Title, ContainerSignUp, Image } from './styles';
+import { Container, CampoText, InputArea, Title, ContainerSignUp, Image, AlertPassword } from './styles';
 import Logo from '../../assets/logo-future-eats-invert.png';
 import { IconButton, InputAdornment, InputLabel } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import useForm from '../../CustomHooks/useForm';
 import { useHistory } from "react-router-dom";
-import { goToAddAddressPage } from '../../Routes/coordinators';
 import { signUp } from '../../Service/user';
 
 
 
 export default function SignUpForm(props) {
+    const [showSenha, setShowSenha] = React.useState(false)
+    const [showAlert, setShowAlert] = React.useState (false)
     const history = useHistory();
-    const [form, handleInput, resetState] = useForm({
+    const [form, handleInput ] = useForm({
         name: '',
         email: '',
         cpf: '',
@@ -23,37 +23,26 @@ export default function SignUpForm(props) {
         passwordConfirm: '',
     })
 
-
-    const [showSenha, setShowSenha] = React.useState(false);
-
-
     const handleClickShowPassword = () => {
         setShowSenha(!showSenha);
-    };
+    }
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
-    };
+    }
 
     const submitForm = (e) => {
         e.preventDefault()
-       
+        if(form.password !== form.passwordConfirm){
+            setShowAlert(!showAlert)
+        }
         const body = {
             name: form.name,
             email: form.email,
             cpf: form.cpf,
             password: form.password
         }
-        console.log(body);//-------------------------------------------------//
         signUp(body, history)
-        
-        // axios.post('https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/signup', body)
-        // .then((response) =>{
-        //     console.log(response.data.token);// token da criação do novo usuario
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // })
       }
 
     return (
@@ -73,7 +62,6 @@ export default function SignUpForm(props) {
                             name="name"
                             label="Nome"
                             placeholder="Nome e sobrenome"
-                            // defaultValue="Nome"
                             variant="outlined"
                             type="text"
                         />
@@ -87,7 +75,6 @@ export default function SignUpForm(props) {
                             name="email"
                             id="outlined-disabled"
                             label="E-mail"
-                            // defaultValue="Email"
                             placeholder="email@email.com"
                             variant="outlined"
                             type="email"
@@ -113,14 +100,14 @@ export default function SignUpForm(props) {
                             required
                             value={form.password || undefined}
                             onChange={handleInput}
-                            // inputProps={{ pattern: "(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" }}
+                            inputProps={{ pattern: "(.){6,}" }}
                             name="password"
                             id="outlined-disabled"
                             label="Senha"
                             placeholder="Mínimo de 6 caracteres"
                             variant="outlined"
                             type={showSenha ? "text" : "password"}
-                            InputProps={{
+                            InputProps={{ 
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <IconButton
@@ -141,6 +128,7 @@ export default function SignUpForm(props) {
                             required
                             value={form.passwordConfirm || undefined}
                             onChange={handleInput}
+                            inputProps={{ pattern: "(.){6,}" }}
                             name="passwordConfirm"
                             id="outlined-disabled"
                             label="Confirmação"
@@ -162,11 +150,13 @@ export default function SignUpForm(props) {
                             }}
                         />
                     </CampoText>
-
+                        
                 </Container>
+                {showAlert && <AlertPassword>Deve ser a mesma que a anterior</AlertPassword>}
                 <Buttons
                     texto={"Criar"} 
-                    submeter = {submitForm}
+                    // submeter = {submitForm}
+                    // type
                 />
             </form>
         </ContainerSignUp>
