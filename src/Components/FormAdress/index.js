@@ -22,7 +22,6 @@ export default function FormAdress(props) {
   const submitForm = (e) => {
     e.preventDefault()
     resetState() //resetando os inputs//
-    console.log(form) //----------------------------------------------//
     addAddress(form, history)
   }
 
@@ -40,11 +39,11 @@ export default function FormAdress(props) {
               name="street"
               label="Rua/Av."
               placeholder="Rua/Av."
-              // defaultValue="Rua/Av."
               variant="outlined"
               type="text"
             />
           </CampoText>
+
           <CampoText>
             <InputArea
             required
@@ -53,24 +52,24 @@ export default function FormAdress(props) {
               name="number"
               id="outlined-disabled"
               label="Número"
-              // defaultValue="Número"
               placeholder="Número"
               variant="outlined"
               type="number"   
             />
           </CampoText>
+
           <CampoText>
             <InputArea
               value={form.complement}
               onChange={handleInput}
               name="complement"
               label="Complemento"
-              // defaultValue="Apt / Bloco"
               placeholder="Apt / Bloco"
               variant="outlined"
               type="text"
             />
           </CampoText>
+
           <CampoText>
             <InputArea
               required
@@ -78,12 +77,12 @@ export default function FormAdress(props) {
               onChange={handleInput}
               name="neighbourhood"
               label="Bairro"
-              // defaultValue="Bairro"
               placeholder="Bairro"
               variant="outlined"
               type="text"
             />
           </CampoText>
+
           <CampoText>
             <InputArea
               required
@@ -91,12 +90,12 @@ export default function FormAdress(props) {
               onChange={handleInput}
               name="city"
               label="Cidade"
-              // defaultValue="Cidade"
               placeholder="Cidade"
               variant="outlined"
               type="text"
             />
           </CampoText>
+          
           <CampoText>
             <InputArea
               required
@@ -104,7 +103,6 @@ export default function FormAdress(props) {
               onChange={handleInput}
               name="state"
               label="Estado"
-              // defaultValue="Estado"
               placeholder="Estado"
               variant="outlined"
               type="text"

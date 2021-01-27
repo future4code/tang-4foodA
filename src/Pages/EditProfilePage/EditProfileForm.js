@@ -34,7 +34,6 @@ export default function EditProfileForm() {
                             name="name"
                             label="Nome"
                             placeholder="Nome e sobrenome"
-                            // defaultValue="Nome"
                             variant="outlined"
                             type="text"
                         />
@@ -48,7 +47,6 @@ export default function EditProfileForm() {
                             name="email"
                             id="outlined-disabled"
                             label="E-mail"
-                            // defaultValue="Email"
                             placeholder="email@email.com"
                             variant="outlined"
                             type="email"
@@ -62,10 +60,10 @@ export default function EditProfileForm() {
                             onChange={handleInput}
                             name="cpf"
                             label="CPF"
-                            // defaultValue="Apt / Bloco"
+                            inputProps={{ pattern: "[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}" }}
                             placeholder="000.000.000-00"
                             variant="outlined"
-                            type="number"
+                            // type="number"
                         />
                     </CampoText>
                 </Container>
