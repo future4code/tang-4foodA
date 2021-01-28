@@ -1,20 +1,24 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
-import { goBack, goToHomePage } from '../../Routes/coordinators';
-
+import Header from '../../Components/Header'
+import FooterMenu from '../../Components/FooterMenu';
+import Image from '../../assets/logo-future-eats-invert.svg'
+import { Container, ContainerImage } from './styles'
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 export default function ErrorPage() {
-    const history = useHistory();
     
     return (
         <div>
-            ERRO 404
-            <button onClick={() => goToHomePage(history)}>
-                HOME
-            </button>
-            <button onClick={() => goBack(history)}>
-                VOLTAR
-            </button>
+            <Header />
+            <Container>
+                <ContainerImage>
+                    <img src={ Image } alt="" />
+                </ContainerImage>
+                <h2>Algo deu errado </h2>
+                <SentimentVeryDissatisfiedIcon color="primary" style={{ fontSize: 40 }} />
+                <p>Confira se você digitou o endereço correto. Pode ser que o endereço não esteja mais disponível. </p>
+            </Container>
+            <FooterMenu />
         </div>
     )
 }
