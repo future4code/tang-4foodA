@@ -13,7 +13,8 @@ img {
     margin-right: 1rem;
     margin-bottom:-1px;
     margin-left:-1px;
-    border-radius: 8px 0 0 8px
+    border-radius: 8px 0 0 8px;
+    object-fit: cover;
 }
 `
 

@@ -21,19 +21,31 @@ export default function PopUpQuantidade() {
     })
     
 
-        // const handleSelect = (event) => {
-        //     setQuantidade(event.target.value)
-        // }
+    const handleSelect = (event) => {
+        setters.setQuantidade(event.target.value)
+    }
     
-        const addQuantidade = () => {
-            setters.setPopUp(false)
-        }
-        
+    const addQuantidade = () => {
+        setters.setPopUp(false)
+        const pedido = !states.carrinho.pedido ? states.restaurante.products.map(item => {
+            if (item.id === states.idPedido) {
+                return {...item, "quantidade": states.quantidade }
+            } 
+            return item
+        }) : states.carrinho.pedido.map(item => {
+            if (item.id === states.idPedido) {
+                return {...item, "quantidade": states.quantidade }
+            } 
+            return item
+        })
+        setters.setCarrinho({"restaurante": states.restaurante, "pedido": pedido})
+    }
+    
     return (
         <PopUpContainer>
                 <PopUpCard>
                     <p>Selecione a quantidade desejada</p>
-                    <select name="quantidade" id="quantidade">
+                    <select name="quantidade" id="quantidade" value={states.quantidade} onChange={(event) => handleSelect(event)}>
                         {renderOptions}
                     </select>
                     <ButtonContainer>

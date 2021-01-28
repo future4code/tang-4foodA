@@ -6,8 +6,8 @@ import { RestaurantInfo, MealsContainer, TypeTitle } from './styles';
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import useRequestData from '../../CustomHooks/useRequestData';
 import { BASE_URL } from '../../Constants/urls';
-import axios from 'axios';
-
+import PopUpQuantidade from '../../Components/PopUpQuantidade';
+import axios from 'axios'
 
 export default function RestaurantPage() {
     const {states, setters} = useContext(GlobalStateContext)
@@ -16,11 +16,28 @@ export default function RestaurantPage() {
     const history = useHistory();
     const params = useParams()
 
-    const data = useRequestData(`${BASE_URL}/restaurants/${params.id}`,{})
+    // const data = useRequestData(`${BASE_URL}/restaurants/${params.id}`,{})
     
     useEffect(() => {
-        setters.setRestaurante(data.restaurant)
+        axios.get(`${BASE_URL}/restaurants/${params.id}`,{headers: {"auth": localStorage.getItem('token')}})
+        .then((response) => {
+                setters.setRestaurante(response.data.restaurant)
+        }).catch((error) => {
+            console.log(error.message)
+        })
 
+        // if (states.restaurante && states.restaurante.products) {
+        //     let arrayMap = states.restaurante.products.map((item) => {
+        //         return item.category
+        //     })
+        //     const uniqueSet = new Set(arrayMap)
+        //     arrayMap = [...uniqueSet]
+        //     setCategorias(arrayMap)
+        // }
+
+    }, [ params.id])
+
+    useEffect(() => {
         if (states.restaurante && states.restaurante.products) {
             let arrayMap = states.restaurante.products.map((item) => {
                 return item.category
@@ -29,11 +46,8 @@ export default function RestaurantPage() {
             arrayMap = [...uniqueSet]
             setCategorias(arrayMap)
         }
-
-    }, [data, states.restaurante])
-    
-    console.log(states.restaurante)
-    console.log(categorias)
+    }, [states.restaurante])
+    // states.restaurante, params.id
 
     const renderRestaurantInfo = () => {
         const frete = Number(states.restaurante.shipping).toFixed(2)
@@ -51,18 +65,35 @@ export default function RestaurantPage() {
         )
     }
     
+    // console.log(states.restaurante)
+    
     const renderCategory = categorias.map(item => {
+        const categoria = item
         return (
             <MealsContainer>
-                <TypeTitle>{item}</TypeTitle>
-                {/* map para renderizar pratos da categoria */}
-                <ItemCard/>
+                <TypeTitle>{categoria}</TypeTitle>
+                {(states.restaurante.products).map(item => {
+                    if (item.category === categoria) {
+                        return (
+                            <ItemCard 
+                                key={item.id}
+                                idPedido={item.id}
+                                img={item.photoUrl}
+                                name={item.name}
+                                ingredientes={item.description}
+                                valor={Number(item.price).toFixed(2)}
+                            />
+                        )
+                    }
+                })}
             </MealsContainer>
         )           
     })
 
     return (
         <div>
+            {states.popUp ? <PopUpQuantidade/> : null}
+
             <Header button='true' pageName='Restaurante'/>
 
             {states.restaurante ? renderRestaurantInfo() : <p>Carregando...</p> }
