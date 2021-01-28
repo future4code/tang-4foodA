@@ -12,24 +12,34 @@ import {
 export default function ItemCard(props) {
     const {states, setters} = useContext(GlobalStateContext)
 
-    const addQuantidade = () => {
+    const addCarrinho = () => {
+        console.log(props.idPedido)
+        setters.setIdPedido(props.idPedido)
         setters.setPopUp(true)
+        console.log(states.idPedido)
     }
-    
+
+    const renderQuantidade = states.carrinho.pedido ? states.carrinho.pedido.filter(item => {
+        if (item.id === props.idPedido) {
+            return item.quantidade
+        }}) : 0
+    console.log(renderQuantidade)
+
     /* todas tags devem ser preenchidas por props quando for adicionar a lógica */
     return (
         <CardContainer>
-            <img src="https://picsum.photos/id/1/80/120" alt="" />
+            <img src={props.img} alt="" />
             <InfoContainer>
                 <HeaderContainer>
-                    <h3>Nome do Prato</h3>
-                    <button onClick={() => addQuantidade()}>0</button>
+                    <h3>{props.name}</h3>
+                    {renderQuantidade[0] ? <button>{renderQuantidade[0].quantidade}</button> : null}
                 </HeaderContainer>
-                <p>Ingredientes do prato</p>
+                <p>{props.ingredientes}</p>
                 <FooterContainer>
-                    <span>R$46,00</span>
-                    {/* <AddBtn>adicionar</AddBtn> ternario para alterar botões quanto necessário */}
-                    <RemoveBtn>remover</RemoveBtn>
+                    <span>R${props.valor}</span>
+                    {renderQuantidade[0] ? 
+                        <RemoveBtn>remover</RemoveBtn>
+                        :  <AddBtn onClick={() => addCarrinho()}>adicionar</AddBtn> }                   
                 </FooterContainer>
             </InfoContainer>
         </CardContainer>
