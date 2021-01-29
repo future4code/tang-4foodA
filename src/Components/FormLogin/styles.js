@@ -12,19 +12,11 @@ export const Title = styled.h1`
   letter-spacing: -0.39px;
 `;
 
-export const Container = styled.div`
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 export const CampoText = styled.div`
-  margin: 1rem;
+  margin: 1rem 0;
 `;
 
 export const InputArea = styled(TextField)`
-  width: 20.5rem;
   height: 3.5rem;
 `;
 
@@ -41,5 +33,5 @@ export const ContainerButton = styled(Button)`
 
 export const CampoButton = styled.div`
   text-align: center;
-  margin: 1rem;
+  margin: 1rem 0;
 `;

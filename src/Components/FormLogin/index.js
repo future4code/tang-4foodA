@@ -1,19 +1,13 @@
 import React, { useState, useRef, useContext } from "react";
 import * as Yup from "yup";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, InputAdornment, IconButton } from "@material-ui/core";
+import { Grid, InputAdornment, IconButton, Link } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { Form } from "@unform/web";
 import api from "../../Service/api";
 import { goToHomePage, goToSignUpPage } from "../../Routes/coordinators";
 import { useHistory } from "react-router-dom";
-import {
-  Container,
-  CampoText,
-  InputArea,
-  ContainerButton,
-  CampoButton,
-} from "./styles";
+import { CampoText, InputArea, ContainerButton, CampoButton } from "./styles";
 import { Title } from "./styles";
 import useForm from "../../CustomHooks/useForm";
 import Logo from "../../assets/logo-future-eats-invert.svg";
@@ -29,6 +23,20 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
+    margin: "1rem",
+    padding: "1rem",
+  },
+  btCadastro: {
+    display: "flex",
+    justifyContent: "center",
+    textTransform: "initial",
+    fontSize: "1rem",
+  },
+  form: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
 });
 const FormLogin = () => {
@@ -115,62 +123,78 @@ const FormLogin = () => {
       justify="center"
       alignItems="center"
     >
-      <Grid item xs="auto" className={classes.main}>
+      <Grid item xs={12} className={classes.main}>
         <div>
           <img src={Logo} alt="logo" />
         </div>
         <Title>Entrar</Title>
-        <Form onSubmit={submitForm} ref={formRef}>
-          <Container>
-            <CampoText>
-              <InputArea
-                required
-                autoFocus
-                value={form.email}
-                onChange={handleInput}
-                name="email"
-                label="E-mail"
-                placeholder="E-mail"
-                variant="outlined"
-                type="text"
-                error={!!form.errors.email}
-                helperText={form.errors.email}
-              />
-            </CampoText>
-            <CampoText>
-              <InputArea
-                required
-                value={form.senha}
-                onChange={handleInput}
-                name="password"
-                id="outlined-disabled"
-                label="Senha"
-                placeholder="Senha"
-                variant="outlined"
-                type={showSenha ? "text" : "password"}
-                error={!!form.errors.password}
-                helperText={form.errors.password}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showSenha ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </CampoText>
-          </Container>
+        <Form onSubmit={submitForm} ref={formRef} className={classes.form}>
+          <CampoText>
+            <InputArea
+              required
+              autoFocus
+              value={form.email}
+              onChange={handleInput}
+              name="email"
+              label="E-mail"
+              placeholder="E-mail"
+              variant="outlined"
+              type="text"
+              error={!!form.errors.email}
+              helperText={form.errors.email}
+              fullWidth
+            />
+          </CampoText>
+          <CampoText>
+            <InputArea
+              required
+              value={form.senha}
+              onChange={handleInput}
+              name="password"
+              id="outlined-disabled"
+              label="Senha"
+              placeholder="Senha"
+              variant="outlined"
+              type={showSenha ? "text" : "password"}
+              error={!!form.errors.password}
+              helperText={form.errors.password}
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showSenha ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </CampoText>
           <CampoButton>
-            <ContainerButton type="submit" color="primary" variant="contained">
+            <ContainerButton
+              type="submit"
+              color="primary"
+              variant="contained"
+              fullWidth
+            >
               Entrar
             </ContainerButton>
           </CampoButton>
+          <Link
+            component="button"
+            variant="body2"
+            color="initial"
+            underline="none"
+            onClick={() => {
+              goToSignUpPage(history);
+            }}
+          >
+            Não possui cadastro? Clique aqui.
+          </Link>
         </Form>
       </Grid>
     </Grid>
