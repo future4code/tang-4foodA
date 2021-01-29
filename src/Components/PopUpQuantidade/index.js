@@ -27,18 +27,28 @@ export default function PopUpQuantidade() {
     
     const addQuantidade = () => {
         setters.setPopUp(false)
-        const pedido = !states.carrinho.pedido ? states.restaurante.products.map(item => {
-            if (item.id === states.idPedido) {
-                return {...item, "quantidade": states.quantidade }
-            } 
-            return item
-        }) : states.carrinho.pedido.map(item => {
-            if (item.id === states.idPedido) {
-                return {...item, "quantidade": states.quantidade }
-            } 
-            return item
+
+
+        if (states.quantidade <= 0 || states.restaurante === {} && states.restaurante !== states.carrinho.restaurante) {
+            return null 
+        }
+
+        const pedido = states.restaurante.products.filter(item => {
+                
+            if ( item.id === states.idPedido) {
+                item.quantidade = states.quantidade
+                    return item
+                } 
+               
         })
-        setters.setCarrinho({"restaurante": states.restaurante, "pedido": pedido})
+
+        if (!states.carrinho.pedido) {
+            setters.setCarrinho({"restaurante": states.restaurante, "pedido": pedido})
+        } else {
+                
+            setters.setCarrinho({"restaurante": states.restaurante, "pedido": [...pedido,...states.carrinho.pedido]})
+        }
+        
     }
     
     return (
