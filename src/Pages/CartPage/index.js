@@ -20,11 +20,12 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FooterMenu from '../../Components/FooterMenu';
 import ItemCard from '../../Components/ItemCard/ItemCard';
+import useRequestData from '../../CustomHooks/useRequestData';
+import { BASE_URL } from '../../Constants/urls';
 
 export default function CartPage() {
     const history = useHistory();
     const {states, setters} = useContext(GlobalStateContext)
-    
     
     
     
@@ -42,6 +43,22 @@ export default function CartPage() {
         return (item.quantidade * item.price) + resultado;
       }, 0): 0
    
+    const endereco = useRequestData(`${BASE_URL}/profile/address`, {})//pegando endereco na API
+   
+    // console.log(pedidos);
+
+    // const body = {
+    //     "products": [{
+    //         "id": "CnKdjU6CyKakQDGHzNln",
+    //         "quantity": 10
+    //     }, {
+    //         "quantity": 1,
+    //         "id": "KJqMl2DxeShkSBevKVre"
+    //     }],
+    //     "paymentMethod": "creditcard"
+    // }
+     
+        
     
 
     return (
@@ -51,7 +68,7 @@ export default function CartPage() {
             <ScrollSection>
                 <ContainerEndereco>
                     <p>Endereço de entrega</p>
-                    <p>Rua Alessandra, 42</p> {/* lógica para puxar endereço */}
+                    <p>{endereco.address?endereco.address.street:null}, {endereco.address?endereco.address.number:null}</p> 
                 </ContainerEndereco>
 
                 {states.carrinho.restaurante === undefined ? 
