@@ -11,7 +11,6 @@ export default function EditProfilePage() {
             />
 
             <EditProfileForm />
-        
         </div>
     )
 }
