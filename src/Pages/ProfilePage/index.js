@@ -75,7 +75,7 @@ export default function ProfilePage() {
           </CaixaEndereco>
           <CaixaHistoricoPedidos>Histórico de Pedidos</CaixaHistoricoPedidos>
           <ContainerDosPedidos> 
-            {orders !== [] ? orders.map((item) => {                
+            {orders.length !== 0 ? orders.map((item) => {                
                   return (
                   <CaixaPedido>
                     <DivName>{item.restaurantName}</DivName>
