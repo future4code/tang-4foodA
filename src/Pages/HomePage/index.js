@@ -30,26 +30,31 @@ const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {})
     return e.category === states.filter
   })
 
+//  useEffect (() =>{
+//   pedidoAndamento()
+//  }, [])
+
+
  
- //verificando se existe pedido em andamento na API
-  const pedidoAndamento =() =>{ 
-    const headers ={
-      headers:{
-          auth:localStorage.getItem('token')
-      }
-  }
-    axios.get(`${BASE_URL}/active-order`, headers)    
-    .then((response) =>{
-      console.log(response.data.order);//----------------------------------
-      setEmAndamento(response.data.order)
+//  //verificando se existe pedido em andamento na API
+//   const pedidoAndamento =() =>{ 
+//     const headers ={
+//       headers:{
+//           auth:localStorage.getItem('token')
+//       }
+//   }
+//     axios.get(`${BASE_URL}/active-order`, headers)    
+//     .then((response) =>{
+//       console.log(response.data.order);//----------------------------------
+//       setEmAndamento(response.data.order)
       
-    }) 
-    .catch((error) =>{
-      console.log(error);
-    }) 
-  }
-  pedidoAndamento()
-  //verificando se existe pedido em andamento na API
+//     }) 
+//     .catch((error) =>{
+//       console.log(error);
+//     }) 
+//   }
+//   pedidoAndamento()
+//   //verificando se existe pedido em andamento na API
 
 
   return (
@@ -65,7 +70,7 @@ const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {})
           }) }
 
       {/* ternário verificando se há pedido para renderizar */}
-      {emAndamento !== null && <PedidoEmAndamento/> }
+      {/* {emAndamento !== null && <PedidoEmAndamento/> } */}
       <FooterMenu page={"home"}/>
     </HomeDiv>
   );

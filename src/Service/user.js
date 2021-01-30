@@ -37,3 +37,23 @@ export const addAddress = (body, history, setLoading) => {
             setLoading(false)
         })
 }
+
+
+export const order = (body, history, setLoading, id) =>{
+    const headers ={
+        headers:{
+            auth:localStorage.getItem('token')
+        }
+    }
+    setLoading(true)
+    axios.post(`${BASE_URL}/restaurants/${id}/order`, body, headers)
+        .then((response) => {
+            console.log(response);
+            setLoading(false)
+            goToHomePage(history)
+        })
+        .catch((error) => {
+            console.log(error);
+            setLoading(false)
+        })
+}

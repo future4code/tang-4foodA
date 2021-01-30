@@ -22,13 +22,14 @@ import FooterMenu from '../../Components/FooterMenu';
 import ItemCard from '../../Components/ItemCard/ItemCard';
 import useRequestData from '../../CustomHooks/useRequestData';
 import { BASE_URL } from '../../Constants/urls';
+import { order } from '../../Service/user'
 
 export default function CartPage() {
     const history = useHistory();
     const {states, setters} = useContext(GlobalStateContext)
     
     
-    
+    const [loading, setLoading] = React.useState(false)
     const [value, setValue] = useState('dinheiro');
     
     const handleChange = (event) => {
@@ -45,20 +46,32 @@ export default function CartPage() {
    
     const endereco = useRequestData(`${BASE_URL}/profile/address`, {})//pegando endereco na API
    
-    // console.log(pedidos);
-
-    // const body = {
-    //     "products": [{
-    //         "id": "CnKdjU6CyKakQDGHzNln",
-    //         "quantity": 10
-    //     }, {
-    //         "quantity": 1,
-    //         "id": "KJqMl2DxeShkSBevKVre"
-    //     }],
-    //     "paymentMethod": "creditcard"
-    // }
-     
+    console.log(pedidos);
+    
+    let body = {}
+    if (pedidos) {
+        body = {
+            "products": pedidos.map((item) => {
+                return { "id": item.id, "quantity": item.quantidade }
+            }
+            ),
+            "paymentMethod": "creditcard"
+        }
         
+    }
+    console.log(body);
+
+
+    let idRestaurante = ""
+    if(states.carrinho.restaurante !== undefined){        
+        idRestaurante = states.carrinho.restaurante.id
+        console.log(idRestaurante);
+    }
+    
+    const submitOrder = (e) => {
+        e.preventDefault()
+        order(body, history, setLoading, idRestaurante)//função está no service/user
+    }
     
 
     return (
@@ -76,7 +89,7 @@ export default function CartPage() {
                     :
                     <div>
                         <ContainerRestaurante>
-                            {console.log(states.carrinho)}
+                            {/* {console.log(states.carrinho)} */}
                             <h2>{states.carrinho.restaurante.name}</h2>
                             <p>{states.carrinho.restaurante.address}</p>
                             <p>{states.carrinho.restaurante.deliveryTime} min</p>
@@ -114,7 +127,9 @@ export default function CartPage() {
                                         <FormControlLabel value="credito" control={<Radio />} label="Cartão de crédito" />
                                     </RadioGroup>
                                 </div>
-                                <Buttons texto='Confirmar'/>
+                                <Buttons 
+                                submeter = {submitOrder}
+                                texto='Confirmar'/>
                             </StyledForm>
 
                         </ContainerCarrinho>
