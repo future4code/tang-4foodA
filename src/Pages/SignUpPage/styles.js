@@ -10,6 +10,7 @@ export const Image = styled.div`
     text-align: center;
     margin: 1.5rem 0 1.75rem 0;
 `
+
 export const Title = styled.h3`
     font-family: Roboto;
     text-align: center;
