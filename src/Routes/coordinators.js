@@ -14,6 +14,10 @@ export const goToEditPage = (history) => {
     history.push('/profile/edit')
 }
 
+export const goToEditAddressPage = (history) => {
+    history.push('/profile/edit/address')
+}
+
 export const goToLoginPage = (history) => {
     history.push('/')
 }

@@ -1,21 +1,12 @@
 import styled from 'styled-components'
 
 export const DivPerfil = styled.div`
-  width: 22.5rem;
-  height: 40rem;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
   position: relative;  
-`
-
-export const HeaderDiv = styled.div`
-  width: 100%;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid black;
 `
 
 export const CaixaPerfil = styled.div`
@@ -34,15 +25,15 @@ export const CaixaInfo = styled.div`
 `
 
 export const CaixaEndereco = styled.div`
-  width: 20.5rem;
-  height: 4.75rem;  
+  max-width: 100vw;
+  height: 4.75rem;   
   padding: 0 1rem;
   background-color: #eeeeee;
   position: relative;  
 `
 
 export const CaixaEnd = styled.div`
-  width: 20.5rem;
+  max-width: 100vw;
   height: 1.125rem;
   margin: 0 0 0.5rem;  
   font-size: 1rem;  
@@ -59,9 +50,11 @@ export const CaixaInfoEnd = styled.div`
 `
 
 export const CaixaHistoricoPedidos = styled.div`
-  width: 20.5rem;
+  max-width: 100vw;
   height: 1.625rem;
-  margin-left: 1rem;  
+  margin-top: 1rem;  
+  margin-left: 1rem;
+  margin-right: 1rem;  
   font-size: 1rem;  
   letter-spacing: -0.39px;
   border-bottom: 1px solid black;  
@@ -100,12 +93,14 @@ export const IconeEndereco = styled.img`
 `
 
 export const ContainerDosPedidos = styled.div`
-  width: 22.5rem;
-  height: 6.875rem;
+  max-width: 100vw;
+  height: 100%;  
+  overflow: auto;
+  scrollbar-width: none;
 `
 
 export const CaixaPedido = styled.div`
-  width: 20.5rem;
+  max-width: 100vw;
   height: 6.375rem;
   margin: 0.438rem 1rem 0 1rem;
   border-radius: 8px;
@@ -136,5 +131,15 @@ export const DivTotal = styled.div`
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: -normal.029px;
+`
+
+export const DivSemPedidos = styled.div`
+  width: 100%;
+  opacity: 0.89;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #000;
+  margin-top: 1.75rem;
+  text-align: center;
 `
 
