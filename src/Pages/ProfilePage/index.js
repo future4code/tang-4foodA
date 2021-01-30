@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useHistory } from "react-router-dom";
-import { goBack, goToCartPage, goToEditPage, goToHomePage } from '../../Routes/coordinators';
+import { goToEditPage, goToEditAddressPage } from '../../Routes/coordinators';
 import { DivPerfil,
          HeaderDiv,
          CaixaInfo,
@@ -15,50 +15,78 @@ import { DivPerfil,
          CaixaPedido,
          DivName,
          DivData,
-         DivTotal
+         DivTotal,
+         DivSemPedidos
     } from './styles'
-import icon from '../../assets/iconelapis.png'
+import icon from '../../assets/iconelapis.png';
 import Header from '../../Components/Header';
 import FooterMenu from '../../Components/FooterMenu';
+import GlobalStateContext from '../../Global/GlobalStateContext';
+import axios from 'axios';
+import { BASE_URL } from '../../Constants/urls';
 
 export default function ProfilePage() {
     const history = useHistory();
+    const {states} = useContext(GlobalStateContext)
+    const [orders, setOrders] = useState([])
+    
+    useEffect(() => {
+      const headers ={
+        headers:{
+            auth:localStorage.getItem('token')
+        }
+      }
+      
+      axios.get(`${BASE_URL}/orders/history`, headers)
+      .then((response) => {
+        setOrders(response.data.orders)        
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }, []);
 
+    function timeConverter(UNIX_timestamp){
+      let a = new Date(UNIX_timestamp);
+      let months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Augusto','Setembro','Outubro','Novembro','Dezembro'];
+      let year = a.getFullYear();
+      let month = months[a.getMonth()];
+      let date = a.getDate();      
+      let time = date + ' ' + month + ' ' + year + ' '; 
+      return time;
+    }     
+
+    console.log(orders)
+   
     return (
       <div>
         <DivPerfil>
-          <IconePerfil src={icon} />  
-          <Header button='false' pageName='Meu perfil'/>
-          {/* <HeaderDiv>
-            Meu Perfil
-          </HeaderDiv> */}
+          <IconePerfil onClick={() => goToEditPage(history)} src={icon} />  
+          <Header button='false' pageName='Meu perfil'/>         
           <CaixaPerfil>            
-            <CaixaInfo>Bruna Olivera</CaixaInfo>
-            <CaixaInfo>bruna_o@gmail.com</CaixaInfo>
-            <CaixaInfo>333.333.333-33</CaixaInfo>
+            <CaixaInfo>{states.perfil.name}</CaixaInfo>
+            <CaixaInfo>{states.perfil.email}</CaixaInfo>
+            <CaixaInfo>{states.perfil.cpf}</CaixaInfo>
           </CaixaPerfil>
           <CaixaEndereco>
-            <IconeEndereco src={icon} />
+            <IconeEndereco onClick={() => goToEditAddressPage(history)} src={icon} />
             <CaixaEnd>Endereço cadastrado:</CaixaEnd>
-            <CaixaInfoEnd>Rua Alessandra Vieira, 42 - Santana</CaixaInfoEnd>
+            <CaixaInfoEnd>{states.perfil.address}</CaixaInfoEnd>
           </CaixaEndereco>
           <CaixaHistoricoPedidos>Histórico de Pedidos</CaixaHistoricoPedidos>
-          <ContainerDosPedidos>
-              <CaixaPedido>
-                <DivName>Bullquer Vila Madalena</DivName>
-                <DivData>23 outubro 2019</DivData>
-                <DivTotal>SUBTOTAL R$67,00</DivTotal>
-              </CaixaPedido>
-              <CaixaPedido>
-                <DivName>Vinil Burger Butantã</DivName>
-                <DivData>30 setembro 2019</DivData>
-                <DivTotal>SUBTOTAL R$89,00</DivTotal>
-              </CaixaPedido>
-              <CaixaPedido>
-                <DivName>Bullquer Vila Madalena</DivName>
-                <DivData>10 setembro 2019</DivData>
-                <DivTotal>SUBTOTAL R$77,00</DivTotal>
-              </CaixaPedido>
+          <ContainerDosPedidos> 
+            {orders !== [] ? orders.map((item) => {                
+                  return (
+                  <CaixaPedido>
+                    <DivName>{item.restaurantName}</DivName>
+                    <DivData>{timeConverter(item.createdAt)}</DivData>
+                    <DivTotal>{`SUBTOTAL R$${item.totalPrice}`}</DivTotal>
+                  </CaixaPedido>
+                ) 
+              }
+            ) : <DivSemPedidos>Você não realizou nenhum pedido</DivSemPedidos> } 
+              
+            <FooterMenu/>
           </ContainerDosPedidos>
 
         </DivPerfil>
