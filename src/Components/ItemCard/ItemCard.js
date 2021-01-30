@@ -13,17 +13,26 @@ export default function ItemCard(props) {
     const {states, setters} = useContext(GlobalStateContext)
 
     const addCarrinho = () => {
-        console.log(props.idPedido)
         setters.setIdPedido(props.idPedido)
         setters.setPopUp(true)
-        console.log(states.idPedido)
+    }
+
+    const removerCarrinho = () => {
+      const novoPedido = states.carrinho.pedido.filter(item => {
+           return item.id !== props.idPedido
+        })
+        if(!novoPedido[0]) {
+            setters.setCarrinho({})
+            return null
+        }
+        setters.setCarrinho({"restaurante": states.restaurante, "pedido": novoPedido})
     }
 
     const renderQuantidade = states.carrinho.pedido ? states.carrinho.pedido.filter(item => {
         if (item.id === props.idPedido) {
             return item.quantidade
         }}) : 0
-    console.log(renderQuantidade)
+
 
     /* todas tags devem ser preenchidas por props quando for adicionar a lógica */
     return (
@@ -38,7 +47,7 @@ export default function ItemCard(props) {
                 <FooterContainer>
                     <span>R${props.valor}</span>
                     {renderQuantidade[0] ? 
-                        <RemoveBtn>remover</RemoveBtn>
+                        <RemoveBtn onClick={() => removerCarrinho()}>remover</RemoveBtn>
                         :  <AddBtn onClick={() => addCarrinho()}>adicionar</AddBtn> }                   
                 </FooterContainer>
             </InfoContainer>

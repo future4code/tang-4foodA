@@ -25,7 +25,7 @@ export default function CartPage() {
     const history = useHistory();
     const {states, setters} = useContext(GlobalStateContext)
     
-    const subtotal = 60.99 /* logica para puxar o subtotal*/
+    
     
     
     const [value, setValue] = useState('dinheiro');
@@ -34,8 +34,16 @@ export default function CartPage() {
         setValue(event.target.value);
     }
     
-    console.log(states.carrinho)
+    const pedidos = states.carrinho.pedido ? states.carrinho.pedido : null
+
+    const frete = states.carrinho.restaurante ? Number(states.carrinho.restaurante.shipping) : 0
+
+    const subtotal = pedidos? frete + pedidos.reduce((resultado, item) => {
+        return (item.quantidade * item.price) + resultado;
+      }, 0): 0
+   
     
+
     return (
         <CartPageContainer>
             {states.popUp ? <PopUpQuantidade/> : null}
@@ -51,22 +59,33 @@ export default function CartPage() {
                     :
                     <div>
                         <ContainerRestaurante>
-                            <h2>Nome restaurante</h2>
-                            <p>Endereço restaurante</p>
-                            <p>tempo entrega</p>
+                            {console.log(states.carrinho)}
+                            <h2>{states.carrinho.restaurante.name}</h2>
+                            <p>{states.carrinho.restaurante.address}</p>
+                            <p>{states.carrinho.restaurante.deliveryTime} min</p>
                         </ContainerRestaurante>
 
-                        <ContainerCarrinho>
                             
 
-                            {/* map nos itens do carrinho para renderizar os cards */}
-                            <ItemCard/>
+                            {pedidos.map(item => {
+                                return <ItemCard 
+                                key={item.id}
+                                idPedido={item.id}
+                                img={item.photoUrl}
+                                name={item.name}
+                                ingredientes={item.description}
+                                valor={Number(item.price).toFixed(2)}
+                            />
+                            })}
+                    </div>         
+                }
+                        <ContainerCarrinho>
 
                             <SubtotalContainer>
                                 <span> SUBTOTAL </span>
                                 <div>
-                                    <span> Frete R${Number(states.carrinho.restaurante.shipping).toFixed(2)}</span> 
-                                    <span> R$ {subtotal}</span> 
+                                    <span> Frete R${frete.toFixed(2)}</span> 
+                                    <span> R$ {subtotal.toFixed(2)}</span> 
                                 </div>
                             </SubtotalContainer>
 
@@ -82,8 +101,7 @@ export default function CartPage() {
                             </StyledForm>
 
                         </ContainerCarrinho>
-                    </div>         
-                }
+
             </ScrollSection>
             <FooterMenu page={"cart"}/>
         </CartPageContainer>
