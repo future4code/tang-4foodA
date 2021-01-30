@@ -34,11 +34,11 @@ export default function CartPage() {
         setValue(event.target.value);
     }
     
-    const pedidosFiltrados = states.carrinho.pedido ? states.carrinho.pedido.filter(item => {return item.quantidade }) : null
+    const pedidos = states.carrinho.pedido ? states.carrinho.pedido : null
 
     const frete = states.carrinho.restaurante ? Number(states.carrinho.restaurante.shipping) : 0
 
-    const subtotal = pedidosFiltrados? frete + pedidosFiltrados.reduce((resultado, item) => {
+    const subtotal = pedidos? frete + pedidos.reduce((resultado, item) => {
         return (item.quantidade * item.price) + resultado;
       }, 0): 0
    
@@ -67,7 +67,7 @@ export default function CartPage() {
 
                             
 
-                            {pedidosFiltrados.map(item => {
+                            {pedidos.map(item => {
                                 return <ItemCard 
                                 key={item.id}
                                 idPedido={item.id}
