@@ -11,11 +11,16 @@ export default function LoginPage() {
   const [exibirLogin, setExibirLogin] = useState(false);
 
   useEffect(() => {
-    if (!exibirLogin) {
+    if (localStorage.getItem('token') !== "") {
+      setTimeout(function () {
+        history.push('/feed')
+      }, 2000);
+    } else if (!exibirLogin) {
       setTimeout(function () {
         setExibirLogin(true);
       }, 2000);
     }
+
   }, [exibirLogin]);
 
   return (

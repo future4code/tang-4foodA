@@ -5,7 +5,6 @@ export const DivPerfil = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
   position: relative;  
 `
 
@@ -93,6 +92,7 @@ export const IconeEndereco = styled.img`
 `
 
 export const ContainerDosPedidos = styled.div`
+  margin-bottom: 5rem;
   max-width: 100vw;
   height: 100%;  
   overflow: auto;

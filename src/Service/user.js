@@ -39,7 +39,7 @@ export const addAddress = (body, history, setLoading) => {
 }
 
 
-export const order = (body, history, setLoading, id) =>{
+export const order = (body, history, setLoading, id, setCarrinho) =>{
     const headers ={
         headers:{
             auth:localStorage.getItem('token')
@@ -50,10 +50,13 @@ export const order = (body, history, setLoading, id) =>{
         .then((response) => {
             
             setLoading(false)
+            setCarrinho({})
             goToHomePage(history)
         })
         .catch((error) => {
-            
-            setLoading(false)
+           if ( error.message === "Request failed with status code 409") {
+             alert("Já existe um pedido em andamento")
+           }
+                setLoading(false)
         })
 }

@@ -72,7 +72,7 @@ export default function CartPage() {
     
     const submitOrder = (e) => {
         e.preventDefault()
-        order(body, history, setLoading, idRestaurante)//função está no service/user
+        order(body, history, setLoading, idRestaurante, setters.setCarrinho)//função está no service/user
     }
     
 

@@ -25,12 +25,16 @@ import GlobalStateContext from '../../Global/GlobalStateContext';
 import axios from 'axios';
 import { BASE_URL } from '../../Constants/urls';
 import useProtectedPage from '../../CustomHooks/useProtectedPage';
+import useRequestData from '../../CustomHooks/useRequestData'
+import Loading from "../../Components/Loading/index"
 
 export default function ProfilePage() {
   useProtectedPage()
     const history = useHistory();
     const {states} = useContext(GlobalStateContext)
     const [orders, setOrders] = useState([])
+
+    const perfil = useRequestData(`${BASE_URL}/profile`, {})
     
     useEffect(() => {
       const headers ={
@@ -59,22 +63,29 @@ export default function ProfilePage() {
     }     
 
     console.log(orders)
+
+    if(!perfil.user) {
+      return <Loading/>
+    }
    
     return (
       <div>
         <DivPerfil>
           <IconePerfil onClick={() => goToEditPage(history)} src={icon} />  
           <Header button='false' pageName='Meu perfil'/>         
+         
           <CaixaPerfil>            
-            <CaixaInfo>{states.perfil.name}</CaixaInfo>
-            <CaixaInfo>{states.perfil.email}</CaixaInfo>
-            <CaixaInfo>{states.perfil.cpf}</CaixaInfo>
+            <CaixaInfo>{perfil.user.name}</CaixaInfo>
+            <CaixaInfo>{perfil.user.email}</CaixaInfo>
+            <CaixaInfo>{perfil.user.cpf}</CaixaInfo>
           </CaixaPerfil>
+         
           <CaixaEndereco>
             <IconeEndereco onClick={() => goToEditAddressPage(history)} src={icon} />
             <CaixaEnd>Endereço cadastrado:</CaixaEnd>
-            <CaixaInfoEnd>{states.perfil.address}</CaixaInfoEnd>
+            <CaixaInfoEnd>{perfil.user.address}</CaixaInfoEnd>
           </CaixaEndereco>
+         
           <CaixaHistoricoPedidos>Histórico de Pedidos</CaixaHistoricoPedidos>
           <ContainerDosPedidos> 
             {orders.length !== 0 ? orders.map((item) => {                
