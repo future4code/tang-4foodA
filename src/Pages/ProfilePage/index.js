@@ -30,10 +30,9 @@ import Loading from "../../Components/Loading/index"
 
 export default function ProfilePage() {
   useProtectedPage()
-    const history = useHistory();
-    const {states} = useContext(GlobalStateContext)
+    const history = useHistory();    
     const [orders, setOrders] = useState([])
-
+    
     const perfil = useRequestData(`${BASE_URL}/profile`, {})
     
     useEffect(() => {

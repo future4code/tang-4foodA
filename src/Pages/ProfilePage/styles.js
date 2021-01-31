@@ -41,9 +41,9 @@ export const CaixaEnd = styled.div`
 `
 
 export const CaixaInfoEnd = styled.div`
-  width: 20.5rem;
+  max-width: 100vw;
   height: 1.125rem;
-  margin-top: 1rem;  
+  margin-top: 1rem;   
   font-size: 1rem;  
   letter-spacing: -0.39px;
 `
@@ -51,9 +51,7 @@ export const CaixaInfoEnd = styled.div`
 export const CaixaHistoricoPedidos = styled.div`
   max-width: 100vw;
   height: 1.625rem;
-  margin-top: 1rem;  
-  margin-left: 1rem;
-  margin-right: 1rem;  
+  margin: 1rem;  
   font-size: 1rem;  
   letter-spacing: -0.39px;
   border-bottom: 1px solid black;  
