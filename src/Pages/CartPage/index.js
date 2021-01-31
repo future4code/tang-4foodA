@@ -23,8 +23,10 @@ import ItemCard from '../../Components/ItemCard/ItemCard';
 import useRequestData from '../../CustomHooks/useRequestData';
 import { BASE_URL } from '../../Constants/urls';
 import { order } from '../../Service/user'
+import useProtectPage from '../../CustomHooks/useProtectedPage'
 
 export default function CartPage() {
+    useProtectPage()
     const history = useHistory();
     const {states, setters} = useContext(GlobalStateContext)
     

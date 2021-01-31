@@ -4,9 +4,10 @@ import Header from "../../Components/Header/index"
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import useStyles from './styles'
 import CardRestaurante from "../../Components/CardRestaurante/CardRestaurante"
+import useProtectedPage from '../../CustomHooks/useProtectedPage';
 
 export default function SearchPage() {
-
+  useProtectedPage()
     const {states, setters, requests} = useContext(GlobalStateContext)
     const classes = useStyles()
    

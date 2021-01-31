@@ -68,7 +68,7 @@ export default function EditProfileForm() {
                     </CampoText>
                 </Container>
                 <Buttons
-                    // texto={"Salvar"} 
+                    
                     texto={ loading ? <CircularProgress color="secondary" size={24}/> : 'Salvar' } 
                 />
             </form>

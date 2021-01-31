@@ -112,7 +112,7 @@ export default function FormAdress(props) {
           
         </Container>
         <Buttons 
-        // texto={"salvar"}
+        
         texto={ loading ? <CircularProgress color="secondary" size={24}/> : 'Salvar' } 
         submeter = {submitForm} 
         /> 
