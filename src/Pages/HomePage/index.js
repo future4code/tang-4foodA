@@ -11,22 +11,18 @@ import HomeDiv from "./styles"
 import useRequestData from '../../CustomHooks/useRequestData';
 import { BASE_URL } from '../../Constants/urls';
 import axios from "axios";
+import useProtectedPage from '../../CustomHooks/useProtectedPage'
 
 export default function HomePage() {
-
+  useProtectedPage()
   
   const {states, setters, requests} = useContext(GlobalStateContext)
-  const [emAndamento, setEmAndamento]  =useState()
+  const [emAndamento, setEmAndamento]  = useState('')
   const history = useHistory();
 
 
-  // const pedidoEmAndamento = useRequestData(`${BASE_URL}/active-order`, {})
-  // setEmAndamento(pedidoEmAndamento)
- 
  
   useEffect (() =>{
-
-
 
     const headers ={
       headers:{
@@ -35,28 +31,21 @@ export default function HomePage() {
   }
     axios.get(`${BASE_URL}/active-order`, headers)    
     .then((response) =>{
-      console.log(response.data);//----------------------------------
       if(response.data){      
-        console.log(response.data);
         setEmAndamento(response.data)
       }
     }) 
     .catch((error) =>{
-      console.log(error);
     }) 
   
    }, [])
 
 let nomeRestaurante = ''
 let totalDoPedido = 0
-if(emAndamento){
+if(emAndamento.order){
   nomeRestaurante = emAndamento.order.restaurantName
   totalDoPedido =  emAndamento.order.totalPrice
 }
-console.log(nomeRestaurante);
-console.log(totalDoPedido);
-// const nomeRestaurante = emAndamento.order.restaurantName
-   console.log(emAndamento);
 
 const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {})
 
@@ -71,22 +60,22 @@ const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {})
 
   return (
     <HomeDiv>
-      <Header button={"false"} pageName={'Ifuture'}/>
-      <SearchBar/>
-      <FeedMenu/>
+      <Header button={"false"} pageName={'Ifuture'} />
+      <SearchBar />
+      <FeedMenu />
       {states.filter === "" ? listaDeRestaurantes.restaurants.map(e => {
-          return <CardRestaurante  key={e.id}  id={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
-          }) 
+        return <CardRestaurante key={e.id} id={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping} />
+      })
         : filteredArray.map(e => {
-          return <CardRestaurante  key={e.id} id={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping}/>
-          }) }
+          return <CardRestaurante key={e.id} id={e.id} img={e.logoUrl} nome={e.name} tempoDeEntrega={e.deliveryTime} frete={e.shipping} />
+        })}
 
-      {/* ternário verificando se há pedido para renderizar */}
-      {emAndamento !== null && <PedidoEmAndamento
-      restaurante = {nomeRestaurante}
-      valor = {totalDoPedido}
-      /> }
-      <FooterMenu page={"home"}/>
+      {/* Verificando se há pedido para renderizar */}
+      {emAndamento.order !== null && <PedidoEmAndamento
+        restaurante={nomeRestaurante}
+        valor={ totalDoPedido.toFixed(2) }
+      />}
+      <FooterMenu page={"home"} />
     </HomeDiv>
   );
 }

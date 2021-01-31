@@ -37,7 +37,7 @@ export default function ItemCard(props) {
     /* todas tags devem ser preenchidas por props quando for adicionar a lógica */
     return (
         <CardContainer>
-            <img src={props.img} alt="" />
+            <img src={props.img} alt={props.name} />
             <InfoContainer>
                 <HeaderContainer>
                     <h3>{props.name}</h3>

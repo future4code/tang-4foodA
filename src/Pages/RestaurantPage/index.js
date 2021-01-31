@@ -8,8 +8,10 @@ import useRequestData from '../../CustomHooks/useRequestData';
 import { BASE_URL } from '../../Constants/urls';
 import PopUpQuantidade from '../../Components/PopUpQuantidade';
 import axios from 'axios'
+import useProtectedPage from '../../CustomHooks/useProtectedPage'
 
 export default function RestaurantPage() {
+    useProtectedPage()
     const {states, setters} = useContext(GlobalStateContext)
     const [categorias, setCategorias] = useState([])
 
@@ -66,12 +68,13 @@ export default function RestaurantPage() {
     }
     
     // console.log(states.restaurante)
-    
+    console.log(states.restaurante.products);
     const renderCategory = categorias.map(item => {
         const categoria = item
         return (
             <MealsContainer>
                 <TypeTitle>{categoria}</TypeTitle>
+                
                 {(states.restaurante.products).map(item => {
                     if (item.category === categoria) {
                         return (

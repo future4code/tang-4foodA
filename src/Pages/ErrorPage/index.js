@@ -4,9 +4,10 @@ import FooterMenu from '../../Components/FooterMenu';
 import Image from '../../assets/logo-future-eats-invert.svg'
 import { Container, ContainerImage } from './styles'
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+import useProtectedPage from '../../CustomHooks/useProtectedPage';
 
 export default function ErrorPage() {
-    
+    useProtectedPage()
     return (
         <div>
             <Header />

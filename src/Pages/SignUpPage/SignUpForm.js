@@ -18,7 +18,7 @@ export default function SignUpForm(props) {
 
     const history = useHistory();
 
-    const [form, handleInput ] = useForm({
+    const [ form, handleInput ] = useForm({
         name: '',
         email: '',
         cpf: '',
@@ -156,7 +156,6 @@ export default function SignUpForm(props) {
                 </Container>
                 {showAlert && <AlertPassword>Deve ser a mesma que a anterior</AlertPassword>}
                 <Buttons
-                    // texto={"Criar"} 
                     texto={ loading ? <CircularProgress color="secondary" size={24}/> : 'Criar' } 
                 />
             </form>

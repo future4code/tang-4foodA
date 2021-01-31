@@ -24,8 +24,10 @@ import FooterMenu from '../../Components/FooterMenu';
 import GlobalStateContext from '../../Global/GlobalStateContext';
 import axios from 'axios';
 import { BASE_URL } from '../../Constants/urls';
+import useProtectedPage from '../../CustomHooks/useProtectedPage';
 
 export default function ProfilePage() {
+  useProtectedPage()
     const history = useHistory();
     const {states} = useContext(GlobalStateContext)
     const [orders, setOrders] = useState([])
