@@ -12,6 +12,7 @@ import useRequestData from '../../CustomHooks/useRequestData';
 import { BASE_URL } from '../../Constants/urls';
 import axios from "axios";
 import useProtectedPage from '../../CustomHooks/useProtectedPage'
+import Loading from '../../Components/Loading/index'
 
 export default function HomePage() {
   useProtectedPage()
@@ -50,7 +51,7 @@ if(emAndamento.order){
 const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {})
 
   if (!listaDeRestaurantes.restaurants) {
-    return <div>Loading...</div>
+    return <HomeDiv><Loading className="loading"/></HomeDiv>
   }
 
   const filteredArray = listaDeRestaurantes.restaurants.filter(e => {

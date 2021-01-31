@@ -29,7 +29,7 @@ export default function PopUpQuantidade() {
         setters.setPopUp(false)
 
 
-        if (states.quantidade <= 0 || states.restaurante === {} && states.restaurante !== states.carrinho.restaurante) {
+        if (states.quantidade <= 0 || states.restaurante === {}) {
             return null 
         }
 
@@ -44,11 +44,14 @@ export default function PopUpQuantidade() {
 
         if (!states.carrinho.pedido) {
             setters.setCarrinho({"restaurante": states.restaurante, "pedido": pedido})
-        } else {
+        } else if (states.restaurante === states.carrinho.restaurante) {
                 
             setters.setCarrinho({"restaurante": states.restaurante, "pedido": [...pedido,...states.carrinho.pedido]})
+        } else if (states.restaurante !== states.carrinho.restaurante) {
+            alert("Você tem itens de outro restaurante no Carrinho. \n Termine seu pedido ou exclua os itens antes de continuar")
         }
         
+        setters.setQuantidade(0)
     }
     
     return (

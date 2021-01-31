@@ -9,6 +9,7 @@ import { BASE_URL } from '../../Constants/urls';
 import PopUpQuantidade from '../../Components/PopUpQuantidade';
 import axios from 'axios'
 import useProtectedPage from '../../CustomHooks/useProtectedPage'
+import Loading from '../../Components/Loading';
 
 export default function RestaurantPage() {
     useProtectedPage()
@@ -99,7 +100,7 @@ export default function RestaurantPage() {
 
             <Header button='true' pageName='Restaurante'/>
 
-            {states.restaurante ? renderRestaurantInfo() : <p>Carregando...</p> }
+            {states.restaurante.id === params.id ? renderRestaurantInfo() : <Loading/>}
 
             {states.restaurante && states.restaurante.products ? renderCategory : null }
 
