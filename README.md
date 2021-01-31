@@ -1,3 +1,23 @@
+# IFUTURE
+
+Nome dos integrantes: 
+- Adrielly Costa
+- Andréa Soares
+- Davi Souza
+- David Biolchini
+- Rafael Julio
+
+
+Link do Surge:
+
+
+### 🛠 Tecnologias
+- React
+- Styled-components
+- Material-UI
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
