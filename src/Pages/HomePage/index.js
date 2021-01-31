@@ -16,9 +16,47 @@ export default function HomePage() {
 
   
   const {states, setters, requests} = useContext(GlobalStateContext)
-  const [emAndamento, setEmAndamento]  =useState({})
+  const [emAndamento, setEmAndamento]  =useState()
   const history = useHistory();
 
+
+  // const pedidoEmAndamento = useRequestData(`${BASE_URL}/active-order`, {})
+  // setEmAndamento(pedidoEmAndamento)
+ 
+ 
+  useEffect (() =>{
+
+
+
+    const headers ={
+      headers:{
+          auth:localStorage.getItem('token')
+      }
+  }
+    axios.get(`${BASE_URL}/active-order`, headers)    
+    .then((response) =>{
+      console.log(response.data);//----------------------------------
+      if(response.data){      
+        console.log(response.data);
+        setEmAndamento(response.data)
+      }
+    }) 
+    .catch((error) =>{
+      console.log(error);
+    }) 
+  
+   }, [])
+
+let nomeRestaurante = ''
+let totalDoPedido = 0
+if(emAndamento){
+  nomeRestaurante = emAndamento.order.restaurantName
+  totalDoPedido =  emAndamento.order.totalPrice
+}
+console.log(nomeRestaurante);
+console.log(totalDoPedido);
+// const nomeRestaurante = emAndamento.order.restaurantName
+   console.log(emAndamento);
 
 const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {})
 
@@ -29,32 +67,6 @@ const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {})
   const filteredArray = listaDeRestaurantes.restaurants.filter(e => {
     return e.category === states.filter
   })
-
-//  useEffect (() =>{
-//   pedidoAndamento()
-//  }, [])
-
-
- 
-//  //verificando se existe pedido em andamento na API
-//   const pedidoAndamento =() =>{ 
-//     const headers ={
-//       headers:{
-//           auth:localStorage.getItem('token')
-//       }
-//   }
-//     axios.get(`${BASE_URL}/active-order`, headers)    
-//     .then((response) =>{
-//       console.log(response.data.order);//----------------------------------
-//       setEmAndamento(response.data.order)
-      
-//     }) 
-//     .catch((error) =>{
-//       console.log(error);
-//     }) 
-//   }
-//   pedidoAndamento()
-//   //verificando se existe pedido em andamento na API
 
 
   return (
@@ -70,7 +82,10 @@ const listaDeRestaurantes = useRequestData(`${BASE_URL}/restaurants`, {})
           }) }
 
       {/* ternário verificando se há pedido para renderizar */}
-      {/* {emAndamento !== null && <PedidoEmAndamento/> } */}
+      {emAndamento !== null && <PedidoEmAndamento
+      restaurante = {nomeRestaurante}
+      valor = {totalDoPedido}
+      /> }
       <FooterMenu page={"home"}/>
     </HomeDiv>
   );

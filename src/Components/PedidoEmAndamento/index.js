@@ -10,7 +10,7 @@ export default function index(props) {
             </div>
             <div className={"infoDiv"}>
                 <p className={"whiteP"}>Pedido em Andamento</p>
-                <p className={"nomeRestaurante"}>{props.restaurante? props.restaurente: "TESTE"}</p>
+                <p className={"nomeRestaurante"}>{props.restaurante}</p>
                 <p className={"subtotal"}> SUBTOTAL R${props.valor}</p>
             </div>
         </Rectangle>
