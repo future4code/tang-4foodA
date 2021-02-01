@@ -8,20 +8,18 @@ import InitialScreen from "../../Components/InitialScreen";
 
 export default function LoginPage() {
   const history = useHistory();
-  const [exibirLogin, setExibirLogin] = useState(false);
+  const [exibirLogin, setExibirLogin] = useState(false);  
 
   useEffect(() => {
-    if (localStorage.getItem('token') !== "") {
-      setTimeout(function () {
-        history.push('/feed')
-      }, 2000);
-    } else if (!exibirLogin) {
+  
+    if (!exibirLogin) {
       setTimeout(function () {
         setExibirLogin(true);
       }, 2000);
     }
 
   }, [exibirLogin]);
+
 
   return (
     <>
